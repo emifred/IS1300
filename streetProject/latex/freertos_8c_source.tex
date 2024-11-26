@@ -1,0 +1,359 @@
+\hypertarget{freertos_8c_source}{}\doxysection{freertos.\+c}
+\label{freertos_8c_source}\index{Core/Src/freertos.c@{Core/Src/freertos.c}}
+\mbox{\hyperlink{freertos_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00001}00001 \textcolor{comment}{/* USER CODE BEGIN Header */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00018}00018 \textcolor{comment}{/* USER CODE END Header */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00020}00020 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00021}00021 \textcolor{preprocessor}{\#include "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00022}00022 \textcolor{preprocessor}{\#include "{}task.h"{}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00023}00023 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00024}00024 \textcolor{preprocessor}{\#include "{}cmsis\_os.h"{}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00026}00026 \textcolor{comment}{/* Private includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00027}00027 \textcolor{comment}{/* USER CODE BEGIN Includes */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00028}00028 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00029}00029 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{street_func_8h}{streetFunc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00030}00030 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_test_8h}{Test.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00031}00031 \textcolor{comment}{/* USER CODE END Includes */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00033}00033 \textcolor{comment}{/* Private typedef -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00034}00034 \textcolor{comment}{/* USER CODE BEGIN PTD */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00035}\mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8}{00035}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00036}\mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{00036}}     \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a2434cd8c1a594a4cdaa250f86639c600}{Vertical}}, \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{Horizontal}}, \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{Yellow}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00037}\mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{00037}} \} \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8}{states1}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00039}\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2}{00039}} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00040}\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{00040}}     \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}}, \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}}, \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}}, \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2acf08e9881a641a1ad2cbee48c9a8f98c}{Horizontal\_Car}}, \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a11f9b9df8f3880f1470b5a33875ff707}{Vertical\_Car}}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00041}\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a11f9b9df8f3880f1470b5a33875ff707}{00041}} \} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2}{states2}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00043}00043 \textcolor{keyword}{static} \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8}{states1}} state;}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00044}00044 \textcolor{keyword}{static} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2}{states2}} GPIO\_State;}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00045}00045 \textcolor{comment}{/* USER CODE END PTD */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00047}00047 \textcolor{comment}{/* Private define -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00048}00048 \textcolor{comment}{/* USER CODE BEGIN PD */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00050}00050 \textcolor{comment}{/* USER CODE END PD */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00052}00052 \textcolor{comment}{/* Private macro -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00053}00053 \textcolor{comment}{/* USER CODE BEGIN PM */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00055}00055 \textcolor{comment}{/* USER CODE END PM */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00057}00057 \textcolor{comment}{/* Private variables -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00058}00058 \textcolor{comment}{/* USER CODE BEGIN Variables */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00059}\mbox{\hyperlink{freertos_8c_adfd282672842a6fe32299d80dc13a7ae}{00059}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{freertos_8c_adfd282672842a6fe32299d80dc13a7ae}{Waiting\_Cars}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00061}\mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{00061}} uint32\_t \mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{toggleFreq}} = 100; \textcolor{comment}{//Toogle frequency for pedestrian light}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00062}\mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{00062}} uint32\_t \mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{pedestrianDelay}} = 6000; \textcolor{comment}{//Time from pedestrian button pressed to green light}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00063}\mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{00063}} uint32\_t \mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}} = 15000; \textcolor{comment}{//Delay for pedestrian crossing}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00064}\mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{00064}} uint32\_t \mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}} = 3000; \textcolor{comment}{//Delay for orange light time}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00065}\mbox{\hyperlink{freertos_8c_aacd61ac1bbac156259774e474f6c501f}{00065}} uint32\_t \mbox{\hyperlink{freertos_8c_aacd61ac1bbac156259774e474f6c501f}{greenDelay}} = 6000; \textcolor{comment}{// The default delay between green-\/yellow red-\/yellow when no cars are present}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00066}\mbox{\hyperlink{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}{00066}} uint32\_t \mbox{\hyperlink{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}{redDelayMax}} = 5000; \textcolor{comment}{//The maximum delay a car has a red light when arriving at the crossing when cars going vertically are present.}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00068}00068 \textcolor{comment}{/* USER CODE END Variables */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00069}00069 \textcolor{comment}{/* Definitions for defaultTask */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00070}\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{00070}} osThreadId\_t \mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00071}\mbox{\hyperlink{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d}{00071}} \textcolor{keyword}{const} osThreadAttr\_t \mbox{\hyperlink{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d}{defaultTask\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}defaultTask"{}},}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00072}00072         .stack\_size = 128 * 4, .priority = (osPriority\_t) osPriorityRealtime2, \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00073}00073 \textcolor{comment}{/* Definitions for GPIO\_Button1 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00074}\mbox{\hyperlink{freertos_8c_a33e8e34c761eeb08f3b0e178a6f7ce40}{00074}} osThreadId\_t \mbox{\hyperlink{freertos_8c_a33e8e34c761eeb08f3b0e178a6f7ce40}{GPIO\_Button1Handle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00075}\mbox{\hyperlink{freertos_8c_a7e6513d6375e4351eb4b39dc33ecab0b}{00075}} \textcolor{keyword}{const} osThreadAttr\_t \mbox{\hyperlink{freertos_8c_a7e6513d6375e4351eb4b39dc33ecab0b}{GPIO\_Button1\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}GPIO\_Button1"{}},}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00076}00076         .stack\_size = 128 * 4, .priority = (osPriority\_t) osPriorityHigh, \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00077}00077 \textcolor{comment}{/* Definitions for GPIO\_Switches */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00078}\mbox{\hyperlink{freertos_8c_ac8615a3d6a5dea085462cf31c9b3c327}{00078}} osThreadId\_t \mbox{\hyperlink{freertos_8c_ac8615a3d6a5dea085462cf31c9b3c327}{GPIO\_SwitchesHandle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00079}\mbox{\hyperlink{freertos_8c_ab997bf8de8af1f6f4b4ddfd0ad9c4348}{00079}} \textcolor{keyword}{const} osThreadAttr\_t \mbox{\hyperlink{freertos_8c_ab997bf8de8af1f6f4b4ddfd0ad9c4348}{GPIO\_Switches\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}GPIO\_Switches"{}},}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00080}00080         .stack\_size = 128 * 4, .priority = (osPriority\_t) osPriorityHigh, \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00081}00081 \textcolor{comment}{/* Definitions for Timer\_Func */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00082}\mbox{\hyperlink{freertos_8c_a7e680510819f942d613b0ff1d69bee07}{00082}} osThreadId\_t \mbox{\hyperlink{freertos_8c_a7e680510819f942d613b0ff1d69bee07}{Timer\_FuncHandle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00083}\mbox{\hyperlink{freertos_8c_a3e9fb619bf5fe6214d77755f3006da41}{00083}} \textcolor{keyword}{const} osThreadAttr\_t \mbox{\hyperlink{freertos_8c_a3e9fb619bf5fe6214d77755f3006da41}{Timer\_Func\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}Timer\_Func"{}},}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00084}00084         .stack\_size = 128 * 4, .priority = (osPriority\_t) osPriorityRealtime1, \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00085}00085 \textcolor{comment}{/* Definitions for GPIO\_Button2 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00086}\mbox{\hyperlink{freertos_8c_ae0b5a3926d62b2c704eb23fc46dbb95e}{00086}} osThreadId\_t \mbox{\hyperlink{freertos_8c_ae0b5a3926d62b2c704eb23fc46dbb95e}{GPIO\_Button2Handle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00087}\mbox{\hyperlink{freertos_8c_a5ddd8bd300328e835a12e30814efd0f5}{00087}} \textcolor{keyword}{const} osThreadAttr\_t \mbox{\hyperlink{freertos_8c_a5ddd8bd300328e835a12e30814efd0f5}{GPIO\_Button2\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}GPIO\_Button2"{}},}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00088}00088         .stack\_size = 128 * 4, .priority = (osPriority\_t) osPriorityHigh, \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00089}00089 \textcolor{comment}{/* Definitions for event */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00090}\mbox{\hyperlink{freertos_8c_a3e26164b40f68b09321111183e2e4987}{00090}} osMutexId\_t \mbox{\hyperlink{freertos_8c_a3e26164b40f68b09321111183e2e4987}{eventHandle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00091}\mbox{\hyperlink{freertos_8c_a74844844ea4fff03f44694ef98cfa570}{00091}} \textcolor{keyword}{const} osMutexAttr\_t \mbox{\hyperlink{freertos_8c_a74844844ea4fff03f44694ef98cfa570}{event\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}event"{}} \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00092}00092 \textcolor{comment}{/* Definitions for buttonsSem */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00093}\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{00093}} osSemaphoreId\_t \mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00094}\mbox{\hyperlink{freertos_8c_a6992907106fb60110f6a660d9842128c}{00094}} \textcolor{keyword}{const} osSemaphoreAttr\_t \mbox{\hyperlink{freertos_8c_a6992907106fb60110f6a660d9842128c}{buttonsSem\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}buttonsSem"{}} \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00095}00095 \textcolor{comment}{/* Definitions for switchesSem */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00096}\mbox{\hyperlink{freertos_8c_aa6fc76f3ff29c5ee86d6a47d71429010}{00096}} osSemaphoreId\_t \mbox{\hyperlink{freertos_8c_aa6fc76f3ff29c5ee86d6a47d71429010}{switchesSemHandle}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00097}\mbox{\hyperlink{freertos_8c_af3d4b834fac4d1d2c2eb503089f9ca34}{00097}} \textcolor{keyword}{const} osSemaphoreAttr\_t \mbox{\hyperlink{freertos_8c_af3d4b834fac4d1d2c2eb503089f9ca34}{switchesSem\_attributes}} = \{ .name = \textcolor{stringliteral}{"{}switchesSem"{}} \};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00099}00099 \textcolor{comment}{/* Private function prototypes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00100}00100 \textcolor{comment}{/* USER CODE BEGIN FunctionPrototypes */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00101}00101 \textcolor{comment}{/* USER CODE END FunctionPrototypes */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00103}00103 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}{StartDefaultTask}}(\textcolor{keywordtype}{void} *argument);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00104}00104 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_aeafb859292598db54581baaa344d59cb}{Button\_Task1}}(\textcolor{keywordtype}{void} *argument);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00105}00105 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a5cf4553c080fd563e809fd90ad3b1574}{Switches}}(\textcolor{keywordtype}{void} *argument);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00106}00106 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_acb8dfd161d93f95ba378b084449ec87f}{timer}}(\textcolor{keywordtype}{void} *argument);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00107}00107 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a902786d9e4dc3a288b3e7cd06ee25ebb}{Button\_Task2}}(\textcolor{keywordtype}{void} *argument);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00108}00108 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(uint32\_t delay);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00109}00109 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_af10c00e15010efbd7384c0ed9f676300}{Button1\_TimerHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00110}00110 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_ac51c8d7690ab4b15b14669a94c47e750}{Button2\_TimerHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00112}00112 \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_abade755e13d07c10889ae83143656158}{MX\_FREERTOS\_Init}}(\textcolor{keywordtype}{void}); \textcolor{comment}{/* (MISRA C 2004 rule 8.1) */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00119}\mbox{\hyperlink{freertos_8c_abade755e13d07c10889ae83143656158}{00119}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_abade755e13d07c10889ae83143656158}{MX\_FREERTOS\_Init}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00120}00120     \textcolor{comment}{/* USER CODE BEGIN Init */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00121}00121     \textcolor{comment}{/* USER CODE END Init */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00122}00122     \textcolor{comment}{/* Create the mutex(es) */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00123}00123     \textcolor{comment}{/* creation of event */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00124}00124     \mbox{\hyperlink{freertos_8c_a3e26164b40f68b09321111183e2e4987}{eventHandle}} = osMutexNew(\&\mbox{\hyperlink{freertos_8c_a74844844ea4fff03f44694ef98cfa570}{event\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00126}00126     \textcolor{comment}{/* USER CODE BEGIN RTOS\_MUTEX */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00127}00127     \textcolor{comment}{/* add mutexes, ... */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00129}00129     \textcolor{comment}{/* USER CODE END RTOS\_MUTEX */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00131}00131     \textcolor{comment}{/* Create the semaphores(s) */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00132}00132     \textcolor{comment}{/* creation of buttonsSem */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00133}00133     \mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}} = osSemaphoreNew(1, 1, \&\mbox{\hyperlink{freertos_8c_a6992907106fb60110f6a660d9842128c}{buttonsSem\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00134}00134 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00135}00135     \textcolor{comment}{/* creation of switchesSem */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00136}00136     \mbox{\hyperlink{freertos_8c_aa6fc76f3ff29c5ee86d6a47d71429010}{switchesSemHandle}} = osSemaphoreNew(1, 1, \&\mbox{\hyperlink{freertos_8c_af3d4b834fac4d1d2c2eb503089f9ca34}{switchesSem\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00138}00138     \textcolor{comment}{/* USER CODE BEGIN RTOS\_SEMAPHORES */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00139}00139     \textcolor{comment}{/* add semaphores, ... */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00140}00140     \textcolor{comment}{/* USER CODE END RTOS\_SEMAPHORES */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00142}00142     \textcolor{comment}{/* USER CODE BEGIN RTOS\_TIMERS */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00143}00143     \textcolor{comment}{/* start timers, add new ones, ... */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00144}00144     \textcolor{comment}{/* USER CODE END RTOS\_TIMERS */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00146}00146     \textcolor{comment}{/* USER CODE BEGIN RTOS\_QUEUES */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00147}00147     \textcolor{comment}{/* add queues, ... */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00148}00148     \textcolor{comment}{/* USER CODE END RTOS\_QUEUES */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00149}00149 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00150}00150     \textcolor{comment}{/* Create the thread(s) */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00151}00151     \textcolor{comment}{/* creation of defaultTask */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00152}00152     \mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}{StartDefaultTask}}, NULL,}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00153}00153             \&\mbox{\hyperlink{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d}{defaultTask\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00155}00155     \textcolor{comment}{/* creation of GPIO\_Button1 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00156}00156     \mbox{\hyperlink{freertos_8c_a33e8e34c761eeb08f3b0e178a6f7ce40}{GPIO\_Button1Handle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_aeafb859292598db54581baaa344d59cb}{Button\_Task1}}, NULL,}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00157}00157             \&\mbox{\hyperlink{freertos_8c_a7e6513d6375e4351eb4b39dc33ecab0b}{GPIO\_Button1\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00159}00159     \textcolor{comment}{/* creation of GPIO\_Switches */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00160}00160     \mbox{\hyperlink{freertos_8c_ac8615a3d6a5dea085462cf31c9b3c327}{GPIO\_SwitchesHandle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_a5cf4553c080fd563e809fd90ad3b1574}{Switches}}, NULL,}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00161}00161             \&\mbox{\hyperlink{freertos_8c_ab997bf8de8af1f6f4b4ddfd0ad9c4348}{GPIO\_Switches\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00162}00162 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00163}00163     \textcolor{comment}{/* creation of Timer\_Func */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00164}00164     \mbox{\hyperlink{freertos_8c_a7e680510819f942d613b0ff1d69bee07}{Timer\_FuncHandle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_acb8dfd161d93f95ba378b084449ec87f}{timer}}, NULL, \&\mbox{\hyperlink{freertos_8c_a3e9fb619bf5fe6214d77755f3006da41}{Timer\_Func\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00166}00166     \textcolor{comment}{/* creation of GPIO\_Button2 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00167}00167     \mbox{\hyperlink{freertos_8c_ae0b5a3926d62b2c704eb23fc46dbb95e}{GPIO\_Button2Handle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_a902786d9e4dc3a288b3e7cd06ee25ebb}{Button\_Task2}}, NULL,}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00168}00168             \&\mbox{\hyperlink{freertos_8c_a5ddd8bd300328e835a12e30814efd0f5}{GPIO\_Button2\_attributes}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00170}00170     \textcolor{comment}{/* USER CODE BEGIN RTOS\_THREADS */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00171}00171     \textcolor{comment}{/* add threads, ... */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00172}00172     \textcolor{comment}{/* USER CODE END RTOS\_THREADS */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00173}00173 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00174}00174     \textcolor{comment}{/* USER CODE BEGIN RTOS\_EVENTS */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00175}00175     \textcolor{comment}{/* add events, ... */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00176}00176     \textcolor{comment}{/* USER CODE END RTOS\_EVENTS */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00177}00177 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00178}00178 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00179}00179 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00180}00180 \textcolor{comment}{/* USER CODE BEGIN Header\_StartDefaultTask */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00186}00186 \textcolor{comment}{/* USER CODE END Header\_StartDefaultTask */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00187}\mbox{\hyperlink{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}{00187}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}{StartDefaultTask}}(\textcolor{keywordtype}{void} *argument) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00188}00188     \textcolor{comment}{/* USER CODE BEGIN StartDefaultTask */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00189}00189     \textcolor{comment}{//Highest priority task which cycles through the different states}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00190}00190     \textcolor{comment}{//Depending on the delay in Timer-\/task}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00191}00191     \textcolor{comment}{//Set the GPIO to default, meaning no user input at initialisation}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00192}00192     GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00193}00193     \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00194}00194     \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00195}00195         state = \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a2434cd8c1a594a4cdaa250f86639c600}{Vertical}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00196}00196         \mbox{\hyperlink{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}{States}}(1); \textcolor{comment}{//Display the LEDS for when cars going vertically has the green light}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00197}00197         vTaskDelay(1); \textcolor{comment}{// Small delay to prevent loss of data to the LEDS}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00198}00198         vTaskSuspend(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00200}00200         state = \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{Yellow}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00201}00201         \mbox{\hyperlink{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}{States}}(3);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00202}00202         vTaskSuspend(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00203}00203 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00204}00204         state = \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{Horizontal}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00205}00205         \mbox{\hyperlink{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}{States}}(2);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00206}00206         vTaskDelay(1);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00207}00207         vTaskSuspend(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00208}00208 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00209}00209         state = \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{Yellow}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00210}00210         \mbox{\hyperlink{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}{States}}(3);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00211}00211         vTaskDelay(1);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00212}00212         vTaskSuspend(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00214}00214     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00215}00215     \textcolor{comment}{/* USER CODE END StartDefaultTask */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00216}00216 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00217}00217 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00218}00218 \textcolor{comment}{/* USER CODE BEGIN Header\_Button\_Task1 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00224}00224 \textcolor{comment}{/* USER CODE END Header\_Button\_Task1 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00225}\mbox{\hyperlink{freertos_8c_aeafb859292598db54581baaa344d59cb}{00225}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_aeafb859292598db54581baaa344d59cb}{Button\_Task1}}(\textcolor{keywordtype}{void} *argument) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00226}00226     \textcolor{comment}{/* USER CODE BEGIN Button\_Task1 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00227}00227     \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00228}00228     \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00229}00229         \textcolor{keywordflow}{if} (\mbox{\hyperlink{street_func_8h_a53c5b220df7f93e0b7ba59c767145fb0}{Crossing\_Button1}}() == \textcolor{keyword}{true} \&\& state != \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{Horizontal}})}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00230}00230             \textcolor{keywordflow}{while} (state != \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{Horizontal}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00231}00231                 \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(6, \textcolor{charliteral}{'b'}, 1, 1);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00232}00232                 vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{toggleFreq}}));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00233}00233                 \textcolor{keywordflow}{if} ((osSemaphoreAcquire(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}}, 1) == osOK))}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00234}00234                     GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00235}00235             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00236}00236         \mbox{\hyperlink{street_func_8h_a389c6812dc5a30d574fa4f0f371c86cf}{Blue\_Clear1}}();}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00237}00237 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00238}00238     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00239}00239     \textcolor{comment}{/* USER CODE END Button\_Task1 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00240}00240 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00241}00241 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00242}00242 \textcolor{comment}{/* USER CODE BEGIN Header\_Switches */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00248}00248 \textcolor{comment}{/* USER CODE END Header\_Switches */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00249}\mbox{\hyperlink{freertos_8c_a5cf4553c080fd563e809fd90ad3b1574}{00249}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a5cf4553c080fd563e809fd90ad3b1574}{Switches}}(\textcolor{keywordtype}{void} *argument) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00250}00250     \textcolor{comment}{/* USER CODE BEGIN Switches */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00251}00251     \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00252}00252     \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00253}00253         \textcolor{keywordflow}{if} ((osSemaphoreAcquire(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}}, 1) == osOK)) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00254}00254             osSemaphoreRelease(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00255}00255             \textcolor{keywordflow}{if} (\mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\_Vertical}}() == \textcolor{keyword}{true} \&\& \mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\_Horizontal}}() == \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00256}00256                     \&\& GPIO\_State != (\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}} || \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}})) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00257}00257                 GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00258}00258                 \mbox{\hyperlink{freertos_8c_adfd282672842a6fe32299d80dc13a7ae}{Waiting\_Cars}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00259}00259             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00260}00260 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00261}00261             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\_Horizontal}}() == \textcolor{keyword}{true} \&\& \mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\_Vertical}}() == \textcolor{keyword}{false}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00262}00262                     \&\& GPIO\_State != (\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}} || \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}})) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00263}00263                 GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2acf08e9881a641a1ad2cbee48c9a8f98c}{Horizontal\_Car}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00264}00264             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00265}00265 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00266}00266             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\_Vertical}}() == \textcolor{keyword}{true} \&\& \mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\_Horizontal}}() == \textcolor{keyword}{false}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00267}00267                     \&\& GPIO\_State != (\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}} || \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}})) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00268}00268                 GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a11f9b9df8f3880f1470b5a33875ff707}{Vertical\_Car}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00269}00269             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (GPIO\_State != (\mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}} || \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}})) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00270}00270                 GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00271}00271                 \mbox{\hyperlink{freertos_8c_adfd282672842a6fe32299d80dc13a7ae}{Waiting\_Cars}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00272}00272             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00273}00273         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00274}00274         vTaskDelay(10);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00275}00275     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00276}00276     \textcolor{comment}{/* USER CODE END Switches */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00277}00277 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00278}00278 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00279}00279 \textcolor{comment}{/* USER CODE BEGIN Header\_timer */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00285}00285 \textcolor{comment}{/* USER CODE END Header\_timer */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00286}\mbox{\hyperlink{freertos_8c_acb8dfd161d93f95ba378b084449ec87f}{00286}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_acb8dfd161d93f95ba378b084449ec87f}{timer}}(\textcolor{keywordtype}{void} *argument) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00287}00287     \textcolor{comment}{/* USER CODE BEGIN timer */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00288}00288     \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00289}00289     \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00290}00290         \textcolor{keywordflow}{switch} (GPIO\_State) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00291}00291         \textcolor{keywordflow}{case} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}}: \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00292}00292             \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{Yellow}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00293}00293                 \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00294}00294             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{freertos_8c_adfd282672842a6fe32299d80dc13a7ae}{Waiting\_Cars}} == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00295}00295                 \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}{redDelayMax}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00296}00296             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00297}00297                 \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_aacd61ac1bbac156259774e474f6c501f}{greenDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00298}00298             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00299}00299             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00300}00300         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00301}00301         \textcolor{keywordflow}{case} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2ada3f5f2f2cdc3f0ab1e0a6ad2c361632}{Button1}}: \{ \textcolor{comment}{//if any of buttons been pressed}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00302}00302             \mbox{\hyperlink{freertos_8c_af10c00e15010efbd7384c0ed9f676300}{Button1\_TimerHandler}}();}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00303}00303 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00304}00304             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00305}00305         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00306}00306         \textcolor{keywordflow}{case} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}}: \{ \textcolor{comment}{//if any of buttons been pressed}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00307}00307             \mbox{\hyperlink{freertos_8c_ac51c8d7690ab4b15b14669a94c47e750}{Button2\_TimerHandler}}();}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00308}00308             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00309}00309         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00310}00310         \textcolor{keywordflow}{case} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2acf08e9881a641a1ad2cbee48c9a8f98c}{Horizontal\_Car}}: \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00311}00311             \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{Horizontal}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00312}00312                 vTaskDelay(10);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00313}00313             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00314}00314                 vTaskResume(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00315}00315 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00316}00316             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00317}00317             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00318}00318         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00319}00319         \textcolor{keywordflow}{case} \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a11f9b9df8f3880f1470b5a33875ff707}{Vertical\_Car}}: \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00320}00320             \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a2434cd8c1a594a4cdaa250f86639c600}{Vertical}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00321}00321                 vTaskDelay(10);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00322}00322             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00323}00323                 vTaskResume(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00324}00324 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00325}00325             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00326}00326 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00327}00327             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00328}00328         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00329}00329 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00330}00330         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00331}00331     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00332}00332 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00333}00333     \textcolor{comment}{/* USER CODE END timer */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00334}00334 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00335}00335 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00336}00336 \textcolor{comment}{/* USER CODE BEGIN Header\_Button\_Task2 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00342}00342 \textcolor{comment}{/* USER CODE END Header\_Button\_Task2 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00343}\mbox{\hyperlink{freertos_8c_a902786d9e4dc3a288b3e7cd06ee25ebb}{00343}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a902786d9e4dc3a288b3e7cd06ee25ebb}{Button\_Task2}}(\textcolor{keywordtype}{void} *argument) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00344}00344     \textcolor{comment}{/* USER CODE BEGIN Button\_Task2 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00345}00345     \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00346}00346     \textcolor{keywordflow}{for} (;;) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00347}00347         \textcolor{keywordflow}{if} (\mbox{\hyperlink{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\_Button2}}() == \textcolor{keyword}{true} \&\& state != \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a2434cd8c1a594a4cdaa250f86639c600}{Vertical}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00348}00348             \textcolor{keywordflow}{while} (state != \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a2434cd8c1a594a4cdaa250f86639c600}{Vertical}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00349}00349                 \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(5, \textcolor{charliteral}{'b'}, 1, 1);}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00350}00350                 vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{toggleFreq}}));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00351}00351                 \textcolor{keywordflow}{if} ((osSemaphoreAcquire(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}}, 1) == osOK))}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00352}00352                     GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a9e0a460705b50db7ff0d129061b61d56}{Button2}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00353}00353             \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00354}00354             \mbox{\hyperlink{street_func_8h_aba3801ed361d3c8d469d8ef93e17097c}{Blue\_Clear2}}();}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00355}00355         \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00356}00356     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00357}00357     \textcolor{comment}{/* USER CODE END Button\_Task2 */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00358}00358 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00359}00359 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00360}00360 \textcolor{comment}{/* Private application code -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00361}00361 \textcolor{comment}{/* USER CODE BEGIN Application */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00362}\mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{00362}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(uint32\_t delay) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00363}00363     vTaskDelay(pdMS\_TO\_TICKS(delay));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00364}00364     vTaskResume(\mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00365}00365 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00366}\mbox{\hyperlink{freertos_8c_af10c00e15010efbd7384c0ed9f676300}{00366}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_af10c00e15010efbd7384c0ed9f676300}{Button1\_TimerHandler}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00367}00367     \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{Yellow}}) \{ \textcolor{comment}{//if the button was pressed when there was a orange light}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00368}00368         \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00369}00369     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a7d5f78c516bedc0a066182a6fd606b8b}{Horizontal}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00370}00370         vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}}));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00371}00371         osSemaphoreRelease(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00372}00372         GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00373}00373     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00374}00374         \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{pedestrianDelay}} -\/ \mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00375}00375         \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00376}00376         vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}}));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00377}00377         osSemaphoreRelease(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00378}00378         GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00379}00379     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00380}00380 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00381}00381 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00382}\mbox{\hyperlink{freertos_8c_ac51c8d7690ab4b15b14669a94c47e750}{00382}} \textcolor{keywordtype}{void} \mbox{\hyperlink{freertos_8c_ac51c8d7690ab4b15b14669a94c47e750}{Button2\_TimerHandler}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00383}00383     \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8abf28513245738599d13e3ce36bd16c82}{Yellow}}) \{ \textcolor{comment}{//if the button was pressed when there was a orange light}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00384}00384         \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00385}00385     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (state == \mbox{\hyperlink{freertos_8c_a7199ce0084b4ec8e389c44f5e9eb7ce8a2434cd8c1a594a4cdaa250f86639c600}{Vertical}}) \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00386}00386         vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}}));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00387}00387         osSemaphoreRelease(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00388}00388         GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00389}00389     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00390}00390         \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{pedestrianDelay}} -\/ \mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00391}00391         \mbox{\hyperlink{freertos_8c_a1824ca3a171153fb12cbd8b5d24967e2}{Stall\_Function}}(\mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00392}00392         vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}}));}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00393}00393         osSemaphoreRelease(\mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}});}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00394}00394         GPIO\_State = \mbox{\hyperlink{freertos_8c_a38846352de17c1201312c90a179495b2a79935518a3889663d8688b6b01fff051}{Default}};}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00395}00395     \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00396}00396 \}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00397}00397 }
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00398}00398 \textcolor{comment}{/* USER CODE END Application */}}
+\DoxyCodeLine{\Hypertarget{freertos_8c_source_l00399}00399 }
+
+\end{DoxyCode}

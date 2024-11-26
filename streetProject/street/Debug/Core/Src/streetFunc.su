@@ -1,0 +1,11 @@
+../Core/Src/streetFunc.c:27:6:Led_Clear	8	static
+../Core/Src/streetFunc.c:32:6:Blue_Clear1	8	static
+../Core/Src/streetFunc.c:37:6:Blue_Clear2	8	static
+../Core/Src/streetFunc.c:43:6:Led_Toggle	16	static
+../Core/Src/streetFunc.c:156:6:Flash_Led	32	static
+../Core/Src/streetFunc.c:167:6:States	16	static
+../Core/Src/streetFunc.c:219:6:Crossing_Button2	8	static
+../Core/Src/streetFunc.c:227:6:Crossing_Button1	8	static
+../Core/Src/streetFunc.c:235:6:Car_Vertical	8	static
+../Core/Src/streetFunc.c:242:6:Car_Horizontal	8	static
+../Core/Src/streetFunc.c:250:6:sendSPIdata	16	static

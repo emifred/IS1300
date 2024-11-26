@@ -1,0 +1,217 @@
+\hypertarget{street_func_8h}{}\doxysection{Inc/street\+Func.h File Reference}
+\label{street_func_8h}\index{Inc/streetFunc.h@{Inc/streetFunc.h}}
+
+
+\+: Header for street\+Func.\+c file. This file contains the functions used in the project  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}\label{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}} 
+void {\bfseries Led\+\_\+\+Clear} (void)
+\item 
+void \mbox{\hyperlink{street_func_8h_a389c6812dc5a30d574fa4f0f371c86cf}{Blue\+\_\+\+Clear1}} (void)
+\begin{DoxyCompactList}\small\item\em Function to clear all LEDS Led\+\_\+\+Clear();. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8h_aba3801ed361d3c8d469d8ef93e17097c}{Blue\+\_\+\+Clear2}} (void)
+\begin{DoxyCompactList}\small\item\em Function to clear the blue light on Crossing 1 Blue\+\_\+\+Clear();. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8h_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\+\_\+\+Toggle}} (uint8\+\_\+t n, char state)
+\begin{DoxyCompactList}\small\item\em Function to clear the blue light on Crossing 2 Blue\+\_\+\+Clear();. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\+\_\+\+Led}} (uint8\+\_\+t n, char state, uint8\+\_\+t delay, uint8\+\_\+t times)
+\begin{DoxyCompactList}\small\item\em Function light up a specific colour of a specific traffic/crossing light Led\+\_\+\+Toggle(n, \textquotesingle{}state\textquotesingle{});. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}{States}} (uint8\+\_\+t state)
+\begin{DoxyCompactList}\small\item\em Function to toogle on/off LED in a loop Flash\+\_\+\+Led(n, \textquotesingle{}state\textquotesingle{}, delay, times);. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8h_a53c5b220df7f93e0b7ba59c767145fb0}{Crossing\+\_\+\+Button1}} (void)
+\begin{DoxyCompactList}\small\item\em Function containing the different states of the crossing and the functions to show each of them. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\+\_\+\+Button2}} (void)
+\begin{DoxyCompactList}\small\item\em Function for checking if button 1 has been pressed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\+\_\+\+Horizontal}} (void)
+\begin{DoxyCompactList}\small\item\em Function for checking if button 2 has been pressed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\+\_\+\+Vertical}} (void)
+\begin{DoxyCompactList}\small\item\em Function for checking if any cars are present on the horizontal road. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8h_a251a309098e7f041c4551b65a43bcfac}{send\+SPIdata}} (uint8\+\_\+t data\mbox{[}$\,$\mbox{]}, uint8\+\_\+t byte\+Size)
+\begin{DoxyCompactList}\small\item\em Function for checking if any cars are present on the vertical road. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Header for street\+Func.\+c file. This file contains the functions used in the project 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{street_func_8h_a389c6812dc5a30d574fa4f0f371c86cf}\label{street_func_8h_a389c6812dc5a30d574fa4f0f371c86cf}} 
+\index{streetFunc.h@{streetFunc.h}!Blue\_Clear1@{Blue\_Clear1}}
+\index{Blue\_Clear1@{Blue\_Clear1}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Blue\_Clear1()}{Blue\_Clear1()}}
+{\footnotesize\ttfamily void Blue\+\_\+\+Clear1 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to clear all LEDS Led\+\_\+\+Clear();. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{street_func_8h_aba3801ed361d3c8d469d8ef93e17097c}\label{street_func_8h_aba3801ed361d3c8d469d8ef93e17097c}} 
+\index{streetFunc.h@{streetFunc.h}!Blue\_Clear2@{Blue\_Clear2}}
+\index{Blue\_Clear2@{Blue\_Clear2}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Blue\_Clear2()}{Blue\_Clear2()}}
+{\footnotesize\ttfamily void Blue\+\_\+\+Clear2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to clear the blue light on Crossing 1 Blue\+\_\+\+Clear();. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{street_func_8h_a03b3f31128ec261376ade0507d126b5e}\label{street_func_8h_a03b3f31128ec261376ade0507d126b5e}} 
+\index{streetFunc.h@{streetFunc.h}!Car\_Horizontal@{Car\_Horizontal}}
+\index{Car\_Horizontal@{Car\_Horizontal}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Car\_Horizontal()}{Car\_Horizontal()}}
+{\footnotesize\ttfamily bool Car\+\_\+\+Horizontal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function for checking if button 2 has been pressed. 
+
+void \mbox{\hyperlink{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\+\_\+\+Button2()}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, true if Button 2 has been pressed, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}\label{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}} 
+\index{streetFunc.h@{streetFunc.h}!Car\_Vertical@{Car\_Vertical}}
+\index{Car\_Vertical@{Car\_Vertical}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Car\_Vertical()}{Car\_Vertical()}}
+{\footnotesize\ttfamily bool Car\+\_\+\+Vertical (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function for checking if any cars are present on the horizontal road. 
+
+\mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\+\_\+\+Horizontal(void)}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, true if Car is present, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{street_func_8h_a53c5b220df7f93e0b7ba59c767145fb0}\label{street_func_8h_a53c5b220df7f93e0b7ba59c767145fb0}} 
+\index{streetFunc.h@{streetFunc.h}!Crossing\_Button1@{Crossing\_Button1}}
+\index{Crossing\_Button1@{Crossing\_Button1}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Crossing\_Button1()}{Crossing\_Button1()}}
+{\footnotesize\ttfamily bool Crossing\+\_\+\+Button1 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function containing the different states of the crossing and the functions to show each of them. 
+
+void
+
+state = 1\+: Vertical cars have green light
+
+state = 2\+: Horizontal cars have green light
+
+state = 3\+: Yellow lights are displayed States(state); 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em uint8\+\_\+t} & state\+: Choosing which state is active \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}\label{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}} 
+\index{streetFunc.h@{streetFunc.h}!Crossing\_Button2@{Crossing\_Button2}}
+\index{Crossing\_Button2@{Crossing\_Button2}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Crossing\_Button2()}{Crossing\_Button2()}}
+{\footnotesize\ttfamily bool Crossing\+\_\+\+Button2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function for checking if button 1 has been pressed. 
+
+void \mbox{\hyperlink{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\+\_\+\+Button2()}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, true if Button 1 has been pressed, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{street_func_8h_a955203690ff554b9930aec9aa948be48}\label{street_func_8h_a955203690ff554b9930aec9aa948be48}} 
+\index{streetFunc.h@{streetFunc.h}!Flash\_Led@{Flash\_Led}}
+\index{Flash\_Led@{Flash\_Led}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Flash\_Led()}{Flash\_Led()}}
+{\footnotesize\ttfamily void Flash\+\_\+\+Led (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{n,  }\item[{char}]{state,  }\item[{uint8\+\_\+t}]{delay,  }\item[{uint8\+\_\+t}]{times }\end{DoxyParamCaption})}
+
+
+
+Function light up a specific colour of a specific traffic/crossing light Led\+\_\+\+Toggle(n, \textquotesingle{}state\textquotesingle{});. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em 1} & uint8\+\_\+t n \+: Which traffic light is to be toggled \\
+\hline
+{\em 2} & char state \+: Which colour is to be toggled \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{street_func_8h_a01a03e1de62ebcff4f8eacfcbcc9085a}\label{street_func_8h_a01a03e1de62ebcff4f8eacfcbcc9085a}} 
+\index{streetFunc.h@{streetFunc.h}!Led\_Toggle@{Led\_Toggle}}
+\index{Led\_Toggle@{Led\_Toggle}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{Led\_Toggle()}{Led\_Toggle()}}
+{\footnotesize\ttfamily void Led\+\_\+\+Toggle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{n,  }\item[{char}]{state }\end{DoxyParamCaption})}
+
+
+
+Function to clear the blue light on Crossing 2 Blue\+\_\+\+Clear();. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{street_func_8h_a251a309098e7f041c4551b65a43bcfac}\label{street_func_8h_a251a309098e7f041c4551b65a43bcfac}} 
+\index{streetFunc.h@{streetFunc.h}!sendSPIdata@{sendSPIdata}}
+\index{sendSPIdata@{sendSPIdata}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{sendSPIdata()}{sendSPIdata()}}
+{\footnotesize\ttfamily void send\+SPIdata (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data\mbox{[}$\,$\mbox{]},  }\item[{uint8\+\_\+t}]{byte\+Size }\end{DoxyParamCaption})}
+
+
+
+Function for checking if any cars are present on the vertical road. 
+
+\mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\+\_\+\+Vertical()}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}\label{street_func_8h_a77c8f46b4f42b0873eb4b7e29b2b2a35}} 
+\index{streetFunc.h@{streetFunc.h}!States@{States}}
+\index{States@{States}!streetFunc.h@{streetFunc.h}}
+\doxysubsubsection{\texorpdfstring{States()}{States()}}
+{\footnotesize\ttfamily void States (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{state }\end{DoxyParamCaption})}
+
+
+
+Function to toogle on/off LED in a loop Flash\+\_\+\+Led(n, \textquotesingle{}state\textquotesingle{}, delay, times);. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em 1} & uint8\+\_\+t delay\+: Ms delay between blink \\
+\hline
+{\em 2} & uint8\+\_\+t times\+: How many times LED should blink \\
+\hline
+\end{DoxyParams}

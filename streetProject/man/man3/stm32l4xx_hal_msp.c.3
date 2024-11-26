@@ -1,0 +1,63 @@
+.TH "Core/Src/stm32l4xx_hal_msp.c" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Src/stm32l4xx_hal_msp.c \- This file provides code for the MSP Initialization and de-Initialization codes\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'main\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBHAL_MspInit\fP (void)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file provides code for the MSP Initialization and de-Initialization codes\&. 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBstm32l4xx_hal_msp\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void HAL_MspInit (void)"
+Initializes the Global MSP\&. 
+.PP
+Definition at line \fB63\fP of file \fBstm32l4xx_hal_msp\&.c\fP\&.
+.PP
+.nf
+64 {
+65   /* USER CODE BEGIN MspInit 0 */
+66 
+67   /* USER CODE END MspInit 0 */
+68 
+69   __HAL_RCC_SYSCFG_CLK_ENABLE();
+70   __HAL_RCC_PWR_CLK_ENABLE();
+71 
+72   /* System interrupt init*/
+73   /* PendSV_IRQn interrupt configuration */
+74   HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
+75 
+76   /* USER CODE BEGIN MspInit 1 */
+77 
+78   /* USER CODE END MspInit 1 */
+79 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

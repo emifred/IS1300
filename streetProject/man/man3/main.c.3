@@ -1,0 +1,340 @@
+.TH "Core/Src/main.c" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Src/main.c \- : Main program body  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'main\&.h'\fP
+.br
+\fC#include 'cmsis_os\&.h'\fP
+.br
+\fC#include 'spi\&.h'\fP
+.br
+\fC#include 'gpio\&.h'\fP
+.br
+\fC#include 'FreeRTOS\&.h'\fP
+.br
+\fC#include 'streetFunc\&.H'\fP
+.br
+\fC#include 'Test\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSystemClock_Config\fP (void)"
+.br
+.RI "System Clock Configuration\&. "
+.ti -1c
+.RI "void \fBMX_FREERTOS_Init\fP (void)"
+.br
+.RI "FreeRTOS initialization\&. "
+.ti -1c
+.RI "int \fBmain\fP (void)"
+.br
+.RI "The application entry point\&. "
+.ti -1c
+.RI "void \fBHAL_TIM_PeriodElapsedCallback\fP (TIM_HandleTypeDef *htim)"
+.br
+.RI "Period elapsed callback in non blocking mode\&. "
+.ti -1c
+.RI "void \fBError_Handler\fP (void)"
+.br
+.RI "This function is executed in case of error occurrence\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+: Main program body 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBmain\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void Error_Handler (void)"
+
+.PP
+This function is executed in case of error occurrence\&. 
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB208\fP of file \fBmain\&.c\fP\&.
+.PP
+.nf
+209 {
+210   /* USER CODE BEGIN Error_Handler_Debug */
+211   /* User can add his own implementation to report the HAL error return state */
+212   __disable_irq();
+213   while (1)
+214   {
+215   }
+216   /* USER CODE END Error_Handler_Debug */
+217 }
+.fi
+.SS "void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef * htim)"
+
+.PP
+Period elapsed callback in non blocking mode\&. 
+.PP
+\fBNote\fP
+.RS 4
+This function is called when TIM1 interrupt took place, inside HAL_TIM_IRQHandler()\&. It makes a direct call to HAL_IncTick() to increment a global variable 'uwTick' used as application time base\&. 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIhtim\fP : TIM handle 
+.RE
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB191\fP of file \fBmain\&.c\fP\&.
+.PP
+.nf
+192 {
+193   /* USER CODE BEGIN Callback 0 */
+194 
+195   /* USER CODE END Callback 0 */
+196   if (htim->Instance == TIM1) {
+197     HAL_IncTick();
+198   }
+199   /* USER CODE BEGIN Callback 1 */
+200 
+201   /* USER CODE END Callback 1 */
+202 }
+.fi
+.SS "int main (void)"
+
+.PP
+The application entry point\&. 
+.PP
+\fBReturn values\fP
+.RS 4
+\fIint\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB72\fP of file \fBmain\&.c\fP\&.
+.PP
+.nf
+73 {
+74   /* USER CODE BEGIN 1 */
+75 
+76   /* USER CODE END 1 */
+77 
+78   /* MCU Configuration--------------------------------------------------------*/
+79 
+80   /* Reset of all peripherals, Initializes the Flash interface and the Systick\&. */
+81   HAL_Init();
+82 
+83   /* USER CODE BEGIN Init */
+84 
+85   /* USER CODE END Init */
+86 
+87   /* Configure the system clock */
+88   SystemClock_Config();
+89 
+90   /* USER CODE BEGIN SysInit */
+91 
+92   /* USER CODE END SysInit */
+93 
+94   /* Initialize all configured peripherals */
+95   MX_GPIO_Init();
+96   MX_SPI3_Init();
+97   /* USER CODE BEGIN 2 */
+98   HAL_GPIO_WritePin(Reset_GPIO_Port, Reset_Pin, GPIO_PIN_SET);
+99     //Set Enable active low
+100   HAL_GPIO_WritePin(Enable_GPIO_Port, Enable_Pin, GPIO_PIN_RESET);
+101 
+102 
+103 #ifdef RUN_TEST_PROGRAM
+104       Test_program();
+105 #else
+106      Led_Clear();
+107       /* Init scheduler */
+108       osKernelInitialize();  /* Call init function for freertos objects (in freertos\&.c) */
+109       MX_FREERTOS_Init();
+110 
+111       /* Start scheduler */
+112       osKernelStart();
+113 #endif
+114   /* USER CODE END 2 */
+115 
+116   /* We should never get here as control is now taken by the scheduler */
+117   /* Infinite loop */
+118   /* USER CODE BEGIN WHILE */
+119   // Reset all shift registers
+120 
+121   while (1)
+122   {
+123     /* USER CODE END WHILE */
+124 
+125     /* USER CODE BEGIN 3 */
+126   }
+127   /* USER CODE END 3 */
+128 }
+.fi
+.SS "void MX_FREERTOS_Init (void)"
+
+.PP
+FreeRTOS initialization\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB119\fP of file \fBfreertos\&.c\fP\&.
+.PP
+.nf
+119                             {
+120     /* USER CODE BEGIN Init */
+121     /* USER CODE END Init */
+122     /* Create the mutex(es) */
+123     /* creation of event */
+124     eventHandle = osMutexNew(&event_attributes);
+125 
+126     /* USER CODE BEGIN RTOS_MUTEX */
+127     /* add mutexes, \&.\&.\&. */
+128 
+129     /* USER CODE END RTOS_MUTEX */
+130 
+131     /* Create the semaphores(s) */
+132     /* creation of buttonsSem */
+133     buttonsSemHandle = osSemaphoreNew(1, 1, &buttonsSem_attributes);
+134 
+135     /* creation of switchesSem */
+136     switchesSemHandle = osSemaphoreNew(1, 1, &switchesSem_attributes);
+137 
+138     /* USER CODE BEGIN RTOS_SEMAPHORES */
+139     /* add semaphores, \&.\&.\&. */
+140     /* USER CODE END RTOS_SEMAPHORES */
+141 
+142     /* USER CODE BEGIN RTOS_TIMERS */
+143     /* start timers, add new ones, \&.\&.\&. */
+144     /* USER CODE END RTOS_TIMERS */
+145 
+146     /* USER CODE BEGIN RTOS_QUEUES */
+147     /* add queues, \&.\&.\&. */
+148     /* USER CODE END RTOS_QUEUES */
+149 
+150     /* Create the thread(s) */
+151     /* creation of defaultTask */
+152     defaultTaskHandle = osThreadNew(StartDefaultTask, NULL,
+153             &defaultTask_attributes);
+154 
+155     /* creation of GPIO_Button1 */
+156     GPIO_Button1Handle = osThreadNew(Button_Task1, NULL,
+157             &GPIO_Button1_attributes);
+158 
+159     /* creation of GPIO_Switches */
+160     GPIO_SwitchesHandle = osThreadNew(Switches, NULL,
+161             &GPIO_Switches_attributes);
+162 
+163     /* creation of Timer_Func */
+164     Timer_FuncHandle = osThreadNew(timer, NULL, &Timer_Func_attributes);
+165 
+166     /* creation of GPIO_Button2 */
+167     GPIO_Button2Handle = osThreadNew(Button_Task2, NULL,
+168             &GPIO_Button2_attributes);
+169 
+170     /* USER CODE BEGIN RTOS_THREADS */
+171     /* add threads, \&.\&.\&. */
+172     /* USER CODE END RTOS_THREADS */
+173 
+174     /* USER CODE BEGIN RTOS_EVENTS */
+175     /* add events, \&.\&.\&. */
+176     /* USER CODE END RTOS_EVENTS */
+177 
+178 }
+.fi
+.SS "void SystemClock_Config (void)"
+
+.PP
+System Clock Configuration\&. 
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+Configure the main internal regulator output voltage
+.PP
+Initializes the RCC Oscillators according to the specified parameters in the RCC_OscInitTypeDef structure\&.
+.PP
+Initializes the CPU, AHB and APB buses clocks
+.PP
+Definition at line \fB134\fP of file \fBmain\&.c\fP\&.
+.PP
+.nf
+135 {
+136   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+137   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+138 
+141   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+142   {
+143     Error_Handler();
+144   }
+145 
+149   RCC_OscInitStruct\&.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+150   RCC_OscInitStruct\&.HSIState = RCC_HSI_ON;
+151   RCC_OscInitStruct\&.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+152   RCC_OscInitStruct\&.PLL\&.PLLState = RCC_PLL_ON;
+153   RCC_OscInitStruct\&.PLL\&.PLLSource = RCC_PLLSOURCE_HSI;
+154   RCC_OscInitStruct\&.PLL\&.PLLM = 1;
+155   RCC_OscInitStruct\&.PLL\&.PLLN = 10;
+156   RCC_OscInitStruct\&.PLL\&.PLLP = RCC_PLLP_DIV7;
+157   RCC_OscInitStruct\&.PLL\&.PLLQ = RCC_PLLQ_DIV2;
+158   RCC_OscInitStruct\&.PLL\&.PLLR = RCC_PLLR_DIV2;
+159   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+160   {
+161     Error_Handler();
+162   }
+163 
+166   RCC_ClkInitStruct\&.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+167                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+168   RCC_ClkInitStruct\&.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+169   RCC_ClkInitStruct\&.AHBCLKDivider = RCC_SYSCLK_DIV1;
+170   RCC_ClkInitStruct\&.APB1CLKDivider = RCC_HCLK_DIV1;
+171   RCC_ClkInitStruct\&.APB2CLKDivider = RCC_HCLK_DIV1;
+172 
+173   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+174   {
+175     Error_Handler();
+176   }
+177 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

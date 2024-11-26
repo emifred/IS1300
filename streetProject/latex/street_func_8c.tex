@@ -1,0 +1,545 @@
+\hypertarget{street_func_8c}{}\doxysection{Core/\+Src/street\+Func.c File Reference}
+\label{street_func_8c}\index{Core/Src/streetFunc.c@{Core/Src/streetFunc.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}street\+Func.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}spi.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{street_func_8c_a7e926ab0bec29bda0539eaafca7ec93a}{Led\+\_\+\+Clear}} (void)
+\item 
+void \mbox{\hyperlink{street_func_8c_a389c6812dc5a30d574fa4f0f371c86cf}{Blue\+\_\+\+Clear1}} (void)
+\begin{DoxyCompactList}\small\item\em Function to clear all LEDS \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\+\_\+\+Clear()}};. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8c_aba3801ed361d3c8d469d8ef93e17097c}{Blue\+\_\+\+Clear2}} (void)
+\begin{DoxyCompactList}\small\item\em Function to clear the blue light on Crossing 1 Blue\+\_\+\+Clear();. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\+\_\+\+Toggle}} (uint8\+\_\+t n, char state)
+\begin{DoxyCompactList}\small\item\em Function to clear the blue light on Crossing 2 Blue\+\_\+\+Clear();. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8c_a955203690ff554b9930aec9aa948be48}{Flash\+\_\+\+Led}} (uint8\+\_\+t n, char state, uint8\+\_\+t delay, uint8\+\_\+t times)
+\begin{DoxyCompactList}\small\item\em Function light up a specific colour of a specific traffic/crossing light Led\+\_\+\+Toggle(n, \textquotesingle{}state\textquotesingle{});. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8c_a77c8f46b4f42b0873eb4b7e29b2b2a35}{States}} (uint8\+\_\+t state)
+\begin{DoxyCompactList}\small\item\em Function to toogle on/off LED in a loop Flash\+\_\+\+Led(n, \textquotesingle{}state\textquotesingle{}, delay, times);. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8c_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\+\_\+\+Button2}} (void)
+\begin{DoxyCompactList}\small\item\em Function for checking if button 1 has been pressed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8c_a53c5b220df7f93e0b7ba59c767145fb0}{Crossing\+\_\+\+Button1}} (void)
+\begin{DoxyCompactList}\small\item\em Function containing the different states of the crossing and the functions to show each of them. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8c_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\+\_\+\+Vertical}} (void)
+\begin{DoxyCompactList}\small\item\em Function for checking if any cars are present on the horizontal road. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{street_func_8c_a03b3f31128ec261376ade0507d126b5e}{Car\+\_\+\+Horizontal}} (void)
+\begin{DoxyCompactList}\small\item\em Function for checking if button 2 has been pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{send\+SPIdata}} (uint8\+\_\+t data\mbox{[}$\,$\mbox{]}, uint8\+\_\+t byte\+Size)
+\begin{DoxyCompactList}\small\item\em Function for checking if any cars are present on the vertical road. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}} \mbox{[}$\,$\mbox{]} = \{0b000000000000000000000000000000000\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{street_func_8c_a389c6812dc5a30d574fa4f0f371c86cf}\label{street_func_8c_a389c6812dc5a30d574fa4f0f371c86cf}} 
+\index{streetFunc.c@{streetFunc.c}!Blue\_Clear1@{Blue\_Clear1}}
+\index{Blue\_Clear1@{Blue\_Clear1}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Blue\_Clear1()}{Blue\_Clear1()}}
+{\footnotesize\ttfamily void Blue\+\_\+\+Clear1 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to clear all LEDS \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\+\_\+\+Clear()}};. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00032}{32}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032                       \{}
+\DoxyCodeLine{00033     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 13);}
+\DoxyCodeLine{00034     \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00035     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00036 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_aba3801ed361d3c8d469d8ef93e17097c}\label{street_func_8c_aba3801ed361d3c8d469d8ef93e17097c}} 
+\index{streetFunc.c@{streetFunc.c}!Blue\_Clear2@{Blue\_Clear2}}
+\index{Blue\_Clear2@{Blue\_Clear2}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Blue\_Clear2()}{Blue\_Clear2()}}
+{\footnotesize\ttfamily void Blue\+\_\+\+Clear2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to clear the blue light on Crossing 1 Blue\+\_\+\+Clear();. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00037}{37}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037                       \{}
+\DoxyCodeLine{00038     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 21);}
+\DoxyCodeLine{00039     \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00040     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a03b3f31128ec261376ade0507d126b5e}\label{street_func_8c_a03b3f31128ec261376ade0507d126b5e}} 
+\index{streetFunc.c@{streetFunc.c}!Car\_Horizontal@{Car\_Horizontal}}
+\index{Car\_Horizontal@{Car\_Horizontal}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Car\_Horizontal()}{Car\_Horizontal()}}
+{\footnotesize\ttfamily bool Car\+\_\+\+Horizontal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function for checking if button 2 has been pressed. 
+
+void \mbox{\hyperlink{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\+\_\+\+Button2()}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, true if Button 2 has been pressed, otherwise false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00248}{248}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00248                          \{}
+\DoxyCodeLine{00249     \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a5814ebcd4418dc815e17ddf0a5806f31}{TL1\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a223d19c7838d497513962c08b979e003}{TL1\_Car\_Pin}})) == 0 || (HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_af6f23b3f0c9cfacac0140244a9f27bf2}{TL3\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a0c2da8d2b50ac9c1c4c44459e4edf7d7}{TL3\_Car\_Pin}})) == 0)\{}
+\DoxyCodeLine{00250         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00251     \}}
+\DoxyCodeLine{00252     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00253         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00254 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a00fc219b4c58fa6b1bfe18eb296295cc}\label{street_func_8c_a00fc219b4c58fa6b1bfe18eb296295cc}} 
+\index{streetFunc.c@{streetFunc.c}!Car\_Vertical@{Car\_Vertical}}
+\index{Car\_Vertical@{Car\_Vertical}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Car\_Vertical()}{Car\_Vertical()}}
+{\footnotesize\ttfamily bool Car\+\_\+\+Vertical (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function for checking if any cars are present on the horizontal road. 
+
+\mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\+\_\+\+Horizontal(void)}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, true if Car is present, otherwise false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00241}{241}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00241                        \{}
+\DoxyCodeLine{00242     \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a3057c28d2f8e8f6f0406496ab3772e49}{TL2\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_aa97c4a29e4c1aa98f3d0a55be0f58d9b}{TL2\_Car\_Pin}})) == 0 || (HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a8a01f2b541a1f9614fe6a586f8223c92}{TL4\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ad1e8729cd5e393ab6b45633d7b50c34f}{TL4\_Car\_Pin}})) == 0)\{}
+\DoxyCodeLine{00243         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00244     \}}
+\DoxyCodeLine{00245     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00246         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00247 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a53c5b220df7f93e0b7ba59c767145fb0}\label{street_func_8c_a53c5b220df7f93e0b7ba59c767145fb0}} 
+\index{streetFunc.c@{streetFunc.c}!Crossing\_Button1@{Crossing\_Button1}}
+\index{Crossing\_Button1@{Crossing\_Button1}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Crossing\_Button1()}{Crossing\_Button1()}}
+{\footnotesize\ttfamily bool Crossing\+\_\+\+Button1 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function containing the different states of the crossing and the functions to show each of them. 
+
+void
+
+state = 1\+: Vertical cars have green light
+
+state = 2\+: Horizontal cars have green light
+
+state = 3\+: Yellow lights are displayed States(state); 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em uint8\+\_\+t} & state\+: Choosing which state is active \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00233}{233}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233                            \{}
+\DoxyCodeLine{00234     \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a8a5edac5ed5b9a20270d4a080cf2f0bf}{PL2\_Switch\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a962dd15883ef7bbb3378223d365c4219}{PL2\_Switch\_Pin}})) == 0)\{}
+\DoxyCodeLine{00235         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00236     \}}
+\DoxyCodeLine{00237     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00238         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00239 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a742b8e2bfeaf75f04a3c7805bb2afb32}\label{street_func_8c_a742b8e2bfeaf75f04a3c7805bb2afb32}} 
+\index{streetFunc.c@{streetFunc.c}!Crossing\_Button2@{Crossing\_Button2}}
+\index{Crossing\_Button2@{Crossing\_Button2}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Crossing\_Button2()}{Crossing\_Button2()}}
+{\footnotesize\ttfamily bool Crossing\+\_\+\+Button2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function for checking if button 1 has been pressed. 
+
+void \mbox{\hyperlink{street_func_8h_a742b8e2bfeaf75f04a3c7805bb2afb32}{Crossing\+\_\+\+Button2()}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, true if Button 1 has been pressed, otherwise false 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00225}{225}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00225                            \{}
+\DoxyCodeLine{00226     \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_af5c0f4dbc87a860c2fe911f625c37875}{PL1\_Switch\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_afa116f01d095e7445dab67f9a0843240}{PL1\_Switch\_Pin}})) == 0)\{}
+\DoxyCodeLine{00227         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00228     \}}
+\DoxyCodeLine{00229     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00230         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00231 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a955203690ff554b9930aec9aa948be48}\label{street_func_8c_a955203690ff554b9930aec9aa948be48}} 
+\index{streetFunc.c@{streetFunc.c}!Flash\_Led@{Flash\_Led}}
+\index{Flash\_Led@{Flash\_Led}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Flash\_Led()}{Flash\_Led()}}
+{\footnotesize\ttfamily void Flash\+\_\+\+Led (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{n,  }\item[{char}]{state,  }\item[{uint8\+\_\+t}]{delay,  }\item[{uint8\+\_\+t}]{times }\end{DoxyParamCaption})}
+
+
+
+Function light up a specific colour of a specific traffic/crossing light Led\+\_\+\+Toggle(n, \textquotesingle{}state\textquotesingle{});. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em 1} & uint8\+\_\+t n \+: Which traffic light is to be toggled \\
+\hline
+{\em 2} & char state \+: Which colour is to be toggled \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00163}{163}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00163                                                                    \{}
+\DoxyCodeLine{00164     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i <= times; i++)\{}
+\DoxyCodeLine{00165         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(n, state);}
+\DoxyCodeLine{00166         HAL\_Delay(delay);}
+\DoxyCodeLine{00167     \}}
+\DoxyCodeLine{00168     \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(n, state);}
+\DoxyCodeLine{00169     \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00170 }
+\DoxyCodeLine{00171 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a7e926ab0bec29bda0539eaafca7ec93a}\label{street_func_8c_a7e926ab0bec29bda0539eaafca7ec93a}} 
+\index{streetFunc.c@{streetFunc.c}!Led\_Clear@{Led\_Clear}}
+\index{Led\_Clear@{Led\_Clear}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Led\_Clear()}{Led\_Clear()}}
+{\footnotesize\ttfamily void Led\+\_\+\+Clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00027}{27}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027                     \{}
+\DoxyCodeLine{00028     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] = 0x00000000;}
+\DoxyCodeLine{00029     \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00030 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}\label{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}} 
+\index{streetFunc.c@{streetFunc.c}!Led\_Toggle@{Led\_Toggle}}
+\index{Led\_Toggle@{Led\_Toggle}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{Led\_Toggle()}{Led\_Toggle()}}
+{\footnotesize\ttfamily void Led\+\_\+\+Toggle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{n,  }\item[{char}]{state }\end{DoxyParamCaption})}
+
+
+
+Function to clear the blue light on Crossing 2 Blue\+\_\+\+Clear();. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00043}{43}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043                                       \{}
+\DoxyCodeLine{00044 }
+\DoxyCodeLine{00045     \textcolor{keywordflow}{switch}(n)\{}
+\DoxyCodeLine{00046         \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{00047             \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00048             \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{00049                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 2;}
+\DoxyCodeLine{00050                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 1);}
+\DoxyCodeLine{00051                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 0);}
+\DoxyCodeLine{00052                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00053             \textcolor{keywordflow}{case} \textcolor{charliteral}{'y'}:}
+\DoxyCodeLine{00054                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 1;}
+\DoxyCodeLine{00055                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 2);}
+\DoxyCodeLine{00056                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 0);}
+\DoxyCodeLine{00057                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00058             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:}
+\DoxyCodeLine{00059                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 0;}
+\DoxyCodeLine{00060                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 2);}
+\DoxyCodeLine{00061                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 1);}
+\DoxyCodeLine{00062                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00063             \}}
+\DoxyCodeLine{00064             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00065         \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{00066                 \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00067                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{00068                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 5;}
+\DoxyCodeLine{00069                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 4);}
+\DoxyCodeLine{00070                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 3);}
+\DoxyCodeLine{00071                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00072                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'y'}:}
+\DoxyCodeLine{00073                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 4;}
+\DoxyCodeLine{00074                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 5);}
+\DoxyCodeLine{00075                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 3);}
+\DoxyCodeLine{00076                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00077                 \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:}
+\DoxyCodeLine{00078                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 3;}
+\DoxyCodeLine{00079                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 5);}
+\DoxyCodeLine{00080                     \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 4);}
+\DoxyCodeLine{00081                     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00082                 \}}
+\DoxyCodeLine{00083         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084         \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{00085             \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00086             \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{00087                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 10;}
+\DoxyCodeLine{00088                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 9);}
+\DoxyCodeLine{00089                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 8);}
+\DoxyCodeLine{00090                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00091             \textcolor{keywordflow}{case} \textcolor{charliteral}{'y'}:}
+\DoxyCodeLine{00092                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 9;}
+\DoxyCodeLine{00093                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 8);}
+\DoxyCodeLine{00094                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 10);}
+\DoxyCodeLine{00095                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00096             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:}
+\DoxyCodeLine{00097                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 8;}
+\DoxyCodeLine{00098                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 10);}
+\DoxyCodeLine{00099                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 9);}
+\DoxyCodeLine{00100                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00101             \}}
+\DoxyCodeLine{00102         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00103         \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{00104             \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00105             \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{00106                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 18;}
+\DoxyCodeLine{00107                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 17);}
+\DoxyCodeLine{00108                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 16);}
+\DoxyCodeLine{00109                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110             \textcolor{keywordflow}{case} \textcolor{charliteral}{'y'}:}
+\DoxyCodeLine{00111                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 17;}
+\DoxyCodeLine{00112                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 16);}
+\DoxyCodeLine{00113                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 18);}
+\DoxyCodeLine{00114                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00115             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:}
+\DoxyCodeLine{00116                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 16;}
+\DoxyCodeLine{00117                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 17);}
+\DoxyCodeLine{00118                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 18);}
+\DoxyCodeLine{00119                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00120             \}}
+\DoxyCodeLine{00121         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00122         \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{00123             \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00124             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:}
+\DoxyCodeLine{00125                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 11;}
+\DoxyCodeLine{00126                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 12);}
+\DoxyCodeLine{00127                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00128             \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{00129                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 12;}
+\DoxyCodeLine{00130                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 11);}
+\DoxyCodeLine{00131                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00132             \textcolor{keywordflow}{case} \textcolor{charliteral}{'b'}:}
+\DoxyCodeLine{00133                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 13;}
+\DoxyCodeLine{00134             \}}
+\DoxyCodeLine{00135             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00136         \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{00137             \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00138             \textcolor{keywordflow}{case} \textcolor{charliteral}{'r'}:}
+\DoxyCodeLine{00139                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 19;}
+\DoxyCodeLine{00140                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 20);}
+\DoxyCodeLine{00141                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00142             \textcolor{keywordflow}{case} \textcolor{charliteral}{'g'}:}
+\DoxyCodeLine{00143                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 20;}
+\DoxyCodeLine{00144                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 19);}
+\DoxyCodeLine{00145                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00146             \textcolor{keywordflow}{case} \textcolor{charliteral}{'b'}:}
+\DoxyCodeLine{00147                 \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\string^= 1 << 21;}
+\DoxyCodeLine{00148             \}}
+\DoxyCodeLine{00149         \textcolor{comment}{/*case 7:}}
+\DoxyCodeLine{00150 \textcolor{comment}{            switch(state)\{}}
+\DoxyCodeLine{00151 \textcolor{comment}{            case 'b':}}
+\DoxyCodeLine{00152 \textcolor{comment}{                led[0]\string^= 1 << 13;}}
+\DoxyCodeLine{00153 \textcolor{comment}{                led[0]\string^= 1 << 22;}}
+\DoxyCodeLine{00154 \textcolor{comment}{                break;}}
+\DoxyCodeLine{00155 \textcolor{comment}{            \}*/}}
+\DoxyCodeLine{00156             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00157     \}}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159 }
+\DoxyCodeLine{00160 }
+\DoxyCodeLine{00161 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a251a309098e7f041c4551b65a43bcfac}\label{street_func_8c_a251a309098e7f041c4551b65a43bcfac}} 
+\index{streetFunc.c@{streetFunc.c}!sendSPIdata@{sendSPIdata}}
+\index{sendSPIdata@{sendSPIdata}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{sendSPIdata()}{sendSPIdata()}}
+{\footnotesize\ttfamily void send\+SPIdata (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data\mbox{[}$\,$\mbox{]},  }\item[{uint8\+\_\+t}]{byte\+Size }\end{DoxyParamCaption})}
+
+
+
+Function for checking if any cars are present on the vertical road. 
+
+\mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\+\_\+\+Vertical()}}; 
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00256}{256}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00256                                                   \{}
+\DoxyCodeLine{00257 }
+\DoxyCodeLine{00258     HAL\_SPI\_Transmit(\&\mbox{\hyperlink{spi_8h_aec51920045aad7f70cbfd1f58228d866}{hspi3}}, \&data[0], byteSize, 100);}
+\DoxyCodeLine{00259 }
+\DoxyCodeLine{00260 }
+\DoxyCodeLine{00261 }
+\DoxyCodeLine{00262     HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a09e274fac664cd8bebacd9fd709cbbe5}{STCP\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac8b65ea9a21eee29dd698458f0733df8}{STCP\_Pin}}, GPIO\_PIN\_SET);}
+\DoxyCodeLine{00263     HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a09e274fac664cd8bebacd9fd709cbbe5}{STCP\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac8b65ea9a21eee29dd698458f0733df8}{STCP\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{00264 }
+\DoxyCodeLine{00265 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{street_func_8c_a77c8f46b4f42b0873eb4b7e29b2b2a35}\label{street_func_8c_a77c8f46b4f42b0873eb4b7e29b2b2a35}} 
+\index{streetFunc.c@{streetFunc.c}!States@{States}}
+\index{States@{States}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{States()}{States()}}
+{\footnotesize\ttfamily void States (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{state }\end{DoxyParamCaption})}
+
+
+
+Function to toogle on/off LED in a loop Flash\+\_\+\+Led(n, \textquotesingle{}state\textquotesingle{}, delay, times);. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em 1} & uint8\+\_\+t delay\+: Ms delay between blink \\
+\hline
+{\em 2} & uint8\+\_\+t times\+: How many times LED should blink \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00173}{173}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173                           \{}
+\DoxyCodeLine{00174     \textcolor{keywordflow}{switch}(state)\{}
+\DoxyCodeLine{00175     \textcolor{keywordflow}{case} 1:\{}
+\DoxyCodeLine{00176         \textcolor{comment}{//Bitshift the crossings first because the only have two states,}}
+\DoxyCodeLine{00177         \textcolor{comment}{//which makes them a bit hard to do with Led\_Toggle in 3 states. Led\_Toggle will send their values.}}
+\DoxyCodeLine{00178         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] |= 1 << 11;}
+\DoxyCodeLine{00179         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 12);}
+\DoxyCodeLine{00180         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] |= 1 << 20;}
+\DoxyCodeLine{00181         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 19);}
+\DoxyCodeLine{00182 }
+\DoxyCodeLine{00183         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(1, \textcolor{charliteral}{'r'});}
+\DoxyCodeLine{00184         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(2, \textcolor{charliteral}{'g'});}
+\DoxyCodeLine{00185         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(3, \textcolor{charliteral}{'r'});}
+\DoxyCodeLine{00186         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(4, \textcolor{charliteral}{'g'});}
+\DoxyCodeLine{00187 }
+\DoxyCodeLine{00188 }
+\DoxyCodeLine{00189         \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00190     \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00191     \}}
+\DoxyCodeLine{00192     \textcolor{keywordflow}{case} 2:\{}
+\DoxyCodeLine{00193         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] |= 1 << 19;}
+\DoxyCodeLine{00194         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 20);}
+\DoxyCodeLine{00195         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] |= 1 << 12;}
+\DoxyCodeLine{00196         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 11);}
+\DoxyCodeLine{00197 }
+\DoxyCodeLine{00198         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(1, \textcolor{charliteral}{'g'});}
+\DoxyCodeLine{00199         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(2, \textcolor{charliteral}{'r'});}
+\DoxyCodeLine{00200         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(3, \textcolor{charliteral}{'g'});}
+\DoxyCodeLine{00201         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(4, \textcolor{charliteral}{'r'});}
+\DoxyCodeLine{00202         \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00203 }
+\DoxyCodeLine{00204 }
+\DoxyCodeLine{00205         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00206     \}}
+\DoxyCodeLine{00207     \textcolor{keywordflow}{case} 3:\{}
+\DoxyCodeLine{00208         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] |= 1 << 19;}
+\DoxyCodeLine{00209         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 20);}
+\DoxyCodeLine{00210         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0] |= 1 << 11;}
+\DoxyCodeLine{00211         \mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0]\&= \string~(1 << 12);}
+\DoxyCodeLine{00212 }
+\DoxyCodeLine{00213         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(1, \textcolor{charliteral}{'y'});}
+\DoxyCodeLine{00214         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(2, \textcolor{charliteral}{'y'});}
+\DoxyCodeLine{00215         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(3, \textcolor{charliteral}{'y'});}
+\DoxyCodeLine{00216         \mbox{\hyperlink{street_func_8c_a01a03e1de62ebcff4f8eacfcbcc9085a}{Led\_Toggle}}(4, \textcolor{charliteral}{'y'});}
+\DoxyCodeLine{00217         \mbox{\hyperlink{street_func_8c_a251a309098e7f041c4551b65a43bcfac}{sendSPIdata}}(\&\mbox{\hyperlink{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}{led}}[0], 3);}
+\DoxyCodeLine{00218 }
+\DoxyCodeLine{00219         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220     \}}
+\DoxyCodeLine{00221     \}}
+\DoxyCodeLine{00222 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}\label{street_func_8c_a082b29d1308c39c0aba6b9fce9296ac9}} 
+\index{streetFunc.c@{streetFunc.c}!led@{led}}
+\index{led@{led}!streetFunc.c@{streetFunc.c}}
+\doxysubsubsection{\texorpdfstring{led}{led}}
+{\footnotesize\ttfamily uint32\+\_\+t led\mbox{[}$\,$\mbox{]} = \{0b000000000000000000000000000000000\}}
+
+
+
+Definition at line \mbox{\hyperlink{street_func_8c_source_l00025}{25}} of file \mbox{\hyperlink{street_func_8c_source}{street\+Func.\+c}}.
+

@@ -1,0 +1,105 @@
+\hypertarget{_test_8c_source}{}\doxysection{Test.\+c}
+\label{_test_8c_source}\index{Core/Src/Test.c@{Core/Src/Test.c}}
+\mbox{\hyperlink{_test_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00001}00001 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00002}00002 \textcolor{comment}{ * Test.c}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00003}00003 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00004}00004 \textcolor{comment}{ *  Created on: Dec 5, 2022}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00005}00005 \textcolor{comment}{ *      Author: emil}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00006}00006 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00007}00007 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00008}00008 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{street_func_8h}{streetFunc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00009}00009 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00010}00010 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{spi_8h}{spi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00012}00012 \textcolor{keywordtype}{void} \mbox{\hyperlink{_test_8c_a615d58d6a23624b19abc863ce30f9cab}{Test\_Led}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00013}00013 \textcolor{keywordtype}{void} \mbox{\hyperlink{_test_8c_adff079da5872943ddef69f0e71c4329f}{Test\_Input}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00016}\mbox{\hyperlink{_test_8c_a93bd3e0b2f11b80cbbe3395910eb6fdf}{00016}} uint8\_t \mbox{\hyperlink{_test_8c_a93bd3e0b2f11b80cbbe3395910eb6fdf}{stateTest}} = 1;}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00018}\mbox{\hyperlink{_test_8h_a615d58d6a23624b19abc863ce30f9cab}{00018}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_test_8c_a615d58d6a23624b19abc863ce30f9cab}{Test\_Led}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00019}00019     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <= 4; i++) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00020}00020         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'r'}, 100, 10);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00021}00021         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'y'}, 100, 10);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00022}00022         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'g'}, 100, 10);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00023}00023     \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00024}00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 5; i <= 6; i++) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00025}00025         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'r'}, 100, 10);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00026}00026         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'g'}, 100, 10);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00027}00027         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'b'}, 100, 10);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00028}00028     \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00029}00029     HAL\_Delay(1000);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00030}00030     \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00031}00031 \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00033}\mbox{\hyperlink{_test_8c_adff079da5872943ddef69f0e71c4329f}{00033}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_test_8c_adff079da5872943ddef69f0e71c4329f}{Test\_Input}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00034}00034     \textcolor{keywordflow}{while} (1) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00035}00035         \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_af5c0f4dbc87a860c2fe911f625c37875}{PL1\_Switch\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_afa116f01d095e7445dab67f9a0843240}{PL1\_Switch\_Pin}})) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00036}00036             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(5, \textcolor{charliteral}{'r'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00037}00037             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(5, \textcolor{charliteral}{'g'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00038}00038             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(5, \textcolor{charliteral}{'b'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00039}00039             HAL\_Delay(300);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00040}00040         \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00041}00041         \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a8a5edac5ed5b9a20270d4a080cf2f0bf}{PL2\_Switch\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a962dd15883ef7bbb3378223d365c4219}{PL2\_Switch\_Pin}})) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00042}00042             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(6, \textcolor{charliteral}{'r'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00043}00043             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(6, \textcolor{charliteral}{'g'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00044}00044             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(6, \textcolor{charliteral}{'b'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00045}00045             HAL\_Delay(300);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00046}00046         \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00047}00047         \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a5814ebcd4418dc815e17ddf0a5806f31}{TL1\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a223d19c7838d497513962c08b979e003}{TL1\_Car\_Pin}})) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00048}00048             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(1, \textcolor{charliteral}{'r'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00049}00049             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(1, \textcolor{charliteral}{'y'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00050}00050             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(1, \textcolor{charliteral}{'g'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00051}00051             HAL\_Delay(300);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00052}00052         \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00053}00053         \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a3057c28d2f8e8f6f0406496ab3772e49}{TL2\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_aa97c4a29e4c1aa98f3d0a55be0f58d9b}{TL2\_Car\_Pin}})) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00054}00054             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(2, \textcolor{charliteral}{'r'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00055}00055             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(2, \textcolor{charliteral}{'y'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00056}00056             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(2, \textcolor{charliteral}{'g'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00057}00057             HAL\_Delay(300);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00058}00058         \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00059}00059         \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_af6f23b3f0c9cfacac0140244a9f27bf2}{TL3\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a0c2da8d2b50ac9c1c4c44459e4edf7d7}{TL3\_Car\_Pin}})) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00060}00060             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(3, \textcolor{charliteral}{'r'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00061}00061             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(3, \textcolor{charliteral}{'y'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00062}00062             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(3, \textcolor{charliteral}{'g'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00063}00063             HAL\_Delay(300);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00064}00064         \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00065}00065         \textcolor{keywordflow}{if} ((HAL\_GPIO\_ReadPin(\mbox{\hyperlink{main_8h_a8a01f2b541a1f9614fe6a586f8223c92}{TL4\_Car\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ad1e8729cd5e393ab6b45633d7b50c34f}{TL4\_Car\_Pin}})) == 0) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00066}00066             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(4, \textcolor{charliteral}{'r'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00067}00067             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(4, \textcolor{charliteral}{'y'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00068}00068             \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(4, \textcolor{charliteral}{'g'}, 100, 3);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00069}00069             HAL\_Delay(300);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00070}00070         \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00071}00071             \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00072}00072     \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00074}00074 \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00076}\mbox{\hyperlink{_test_8c_a41f38dbb2821e9896be7d22928d8d851}{00076}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_test_8c_a41f38dbb2821e9896be7d22928d8d851}{Test\_Switches}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00077}00077     \textcolor{keywordflow}{while} (\mbox{\hyperlink{street_func_8h_a00fc219b4c58fa6b1bfe18eb296295cc}{Car\_Vertical}}() == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00078}00078         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(5, \textcolor{charliteral}{'b'}, 10, 1);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00080}00080     \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00081}00081     \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00082}00082     \textcolor{keywordflow}{while} (\mbox{\hyperlink{street_func_8h_a03b3f31128ec261376ade0507d126b5e}{Car\_Horizontal}}() == \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00083}00083         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(6, \textcolor{charliteral}{'b'}, 10, 1);}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00085}00085     \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00086}00086     \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\_Clear}}();}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00087}00087 \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00089}\mbox{\hyperlink{_test_8h_a62677bdd6f6d74d889a0fa118f269150}{00089}} \textcolor{keywordtype}{void} \mbox{\hyperlink{_test_8c_a62677bdd6f6d74d889a0fa118f269150}{Test\_program}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00090}00090     \textcolor{comment}{//Test\_Led();}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00092}00092     \textcolor{comment}{//Test\_Input();}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00093}00093     \textcolor{keywordflow}{while}(1)\{}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00094}00094         \mbox{\hyperlink{_test_8c_a41f38dbb2821e9896be7d22928d8d851}{Test\_Switches}}();}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00095}00095     \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00096}00096 \}}
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{_test_8c_source_l00099}00099 }
+
+\end{DoxyCode}

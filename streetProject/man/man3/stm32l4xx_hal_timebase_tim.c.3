@@ -1,0 +1,211 @@
+.TH "Core/Src/stm32l4xx_hal_timebase_tim.c" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Src/stm32l4xx_hal_timebase_tim.c \- HAL time base based on the hardware TIM\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'stm32l4xx_hal\&.h'\fP
+.br
+\fC#include 'stm32l4xx_hal_tim\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "HAL_StatusTypeDef \fBHAL_InitTick\fP (uint32_t TickPriority)"
+.br
+.RI "This function configures the TIM1 as a time base source\&. The time source is configured to have 1ms time base with a dedicated Tick interrupt priority\&. "
+.ti -1c
+.RI "void \fBHAL_SuspendTick\fP (void)"
+.br
+.RI "Suspend Tick increment\&. "
+.ti -1c
+.RI "void \fBHAL_ResumeTick\fP (void)"
+.br
+.RI "Resume Tick increment\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "TIM_HandleTypeDef \fBhtim1\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+HAL time base based on the hardware TIM\&. 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBstm32l4xx_hal_timebase_tim\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "HAL_StatusTypeDef HAL_InitTick (uint32_t TickPriority)"
+
+.PP
+This function configures the TIM1 as a time base source\&. The time source is configured to have 1ms time base with a dedicated Tick interrupt priority\&. 
+.PP
+\fBNote\fP
+.RS 4
+This function is called automatically at the beginning of program after reset by HAL_Init() or at any time when clock is configured, by HAL_RCC_ClockConfig()\&. 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fITickPriority\fP Tick interrupt priority\&. 
+.RE
+.PP
+\fBReturn values\fP
+.RS 4
+\fIHAL\fP status 
+.RE
+.PP
+
+.PP
+Definition at line \fB41\fP of file \fBstm32l4xx_hal_timebase_tim\&.c\fP\&.
+.PP
+.nf
+42 {
+43   RCC_ClkInitTypeDef    clkconfig;
+44   uint32_t              uwTimclock;
+45 
+46   uint32_t              uwPrescalerValue;
+47   uint32_t              pFLatency;
+48   HAL_StatusTypeDef     status = HAL_OK;
+49 
+50   /* Enable TIM1 clock */
+51   __HAL_RCC_TIM1_CLK_ENABLE();
+52 
+53   /* Get clock configuration */
+54   HAL_RCC_GetClockConfig(&clkconfig, &pFLatency);
+55 
+56   /* Compute TIM1 clock */
+57   uwTimclock = HAL_RCC_GetPCLK2Freq();
+58 
+59   /* Compute the prescaler value to have TIM1 counter clock equal to 1MHz */
+60   uwPrescalerValue = (uint32_t) ((uwTimclock / 1000000U) - 1U);
+61 
+62   /* Initialize TIM1 */
+63   htim1\&.Instance = TIM1;
+64 
+65   /* Initialize TIMx peripheral as follow:
+66   + Period = [(TIM1CLK/1000) - 1]\&. to have a (1/1000) s time base\&.
+67   + Prescaler = (uwTimclock/1000000 - 1) to have a 1MHz counter clock\&.
+68   + ClockDivision = 0
+69   + Counter direction = Up
+70   */
+71   htim1\&.Init\&.Period = (1000000U / 1000U) - 1U;
+72   htim1\&.Init\&.Prescaler = uwPrescalerValue;
+73   htim1\&.Init\&.ClockDivision = 0;
+74   htim1\&.Init\&.CounterMode = TIM_COUNTERMODE_UP;
+75   htim1\&.Init\&.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+76 
+77   status = HAL_TIM_Base_Init(&htim1);
+78   if (status == HAL_OK)
+79   {
+80     /* Start the TIM time Base generation in interrupt mode */
+81     status = HAL_TIM_Base_Start_IT(&htim1);
+82     if (status == HAL_OK)
+83     {
+84     /* Enable the TIM1 global Interrupt */
+85         HAL_NVIC_EnableIRQ(TIM1_UP_TIM16_IRQn);
+86       /* Configure the SysTick IRQ priority */
+87       if (TickPriority < (1UL << __NVIC_PRIO_BITS))
+88       {
+89         /* Configure the TIM IRQ priority */
+90         HAL_NVIC_SetPriority(TIM1_UP_TIM16_IRQn, TickPriority, 0U);
+91         uwTickPrio = TickPriority;
+92       }
+93       else
+94       {
+95         status = HAL_ERROR;
+96       }
+97     }
+98   }
+99 
+100  /* Return function status */
+101   return status;
+102 }
+.fi
+.SS "void HAL_ResumeTick (void)"
+
+.PP
+Resume Tick increment\&. 
+.PP
+\fBNote\fP
+.RS 4
+Enable the tick increment by Enabling TIM1 update interrupt\&. 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB122\fP of file \fBstm32l4xx_hal_timebase_tim\&.c\fP\&.
+.PP
+.nf
+123 {
+124   /* Enable TIM1 Update interrupt */
+125   __HAL_TIM_ENABLE_IT(&htim1, TIM_IT_UPDATE);
+126 }
+.fi
+.SS "void HAL_SuspendTick (void)"
+
+.PP
+Suspend Tick increment\&. 
+.PP
+\fBNote\fP
+.RS 4
+Disable the tick increment by disabling TIM1 update interrupt\&. 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB110\fP of file \fBstm32l4xx_hal_timebase_tim\&.c\fP\&.
+.PP
+.nf
+111 {
+112   /* Disable TIM1 update Interrupt */
+113   __HAL_TIM_DISABLE_IT(&htim1, TIM_IT_UPDATE);
+114 }
+.fi
+.SH "Variable Documentation"
+.PP 
+.SS "TIM_HandleTypeDef htim1"
+
+.PP
+Definition at line \fB28\fP of file \fBstm32l4xx_hal_timebase_tim\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

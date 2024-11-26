@@ -1,0 +1,212 @@
+.TH "Core/Inc/main.h" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Inc/main.h \- : Header for \fBmain\&.c\fP file\&. This file contains the common defines of the application\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'stm32l4xx_hal\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTL1_Car_Pin\fP   GPIO_PIN_4"
+.br
+.ti -1c
+.RI "#define \fBTL1_Car_GPIO_Port\fP   GPIOC"
+.br
+.ti -1c
+.RI "#define \fBSTCP_Pin\fP   GPIO_PIN_12"
+.br
+.ti -1c
+.RI "#define \fBSTCP_GPIO_Port\fP   GPIOB"
+.br
+.ti -1c
+.RI "#define \fBTL2_Car_Pin\fP   GPIO_PIN_13"
+.br
+.ti -1c
+.RI "#define \fBTL2_Car_GPIO_Port\fP   GPIOB"
+.br
+.ti -1c
+.RI "#define \fBTL3_Car_Pin\fP   GPIO_PIN_14"
+.br
+.ti -1c
+.RI "#define \fBTL3_Car_GPIO_Port\fP   GPIOB"
+.br
+.ti -1c
+.RI "#define \fBEnable_Pin\fP   GPIO_PIN_7"
+.br
+.ti -1c
+.RI "#define \fBEnable_GPIO_Port\fP   GPIOC"
+.br
+.ti -1c
+.RI "#define \fBReset_Pin\fP   GPIO_PIN_9"
+.br
+.ti -1c
+.RI "#define \fBReset_GPIO_Port\fP   GPIOA"
+.br
+.ti -1c
+.RI "#define \fBTL4_Car_Pin\fP   GPIO_PIN_10"
+.br
+.ti -1c
+.RI "#define \fBTL4_Car_GPIO_Port\fP   GPIOA"
+.br
+.ti -1c
+.RI "#define \fBPL1_Switch_Pin\fP   GPIO_PIN_15"
+.br
+.ti -1c
+.RI "#define \fBPL1_Switch_GPIO_Port\fP   GPIOA"
+.br
+.ti -1c
+.RI "#define \fBSCHP_Pin\fP   GPIO_PIN_10"
+.br
+.ti -1c
+.RI "#define \fBSCHP_GPIO_Port\fP   GPIOC"
+.br
+.ti -1c
+.RI "#define \fBPL2_Switch_Pin\fP   GPIO_PIN_7"
+.br
+.ti -1c
+.RI "#define \fBPL2_Switch_GPIO_Port\fP   GPIOB"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBError_Handler\fP (void)"
+.br
+.RI "This function is executed in case of error occurrence\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+: Header for \fBmain\&.c\fP file\&. This file contains the common defines of the application\&. 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBmain\&.h\fP\&.
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define Enable_GPIO_Port   GPIOC"
+
+.PP
+Definition at line \fB69\fP of file \fBmain\&.h\fP\&.
+.SS "#define Enable_Pin   GPIO_PIN_7"
+
+.PP
+Definition at line \fB68\fP of file \fBmain\&.h\fP\&.
+.SS "#define PL1_Switch_GPIO_Port   GPIOA"
+
+.PP
+Definition at line \fB75\fP of file \fBmain\&.h\fP\&.
+.SS "#define PL1_Switch_Pin   GPIO_PIN_15"
+
+.PP
+Definition at line \fB74\fP of file \fBmain\&.h\fP\&.
+.SS "#define PL2_Switch_GPIO_Port   GPIOB"
+
+.PP
+Definition at line \fB79\fP of file \fBmain\&.h\fP\&.
+.SS "#define PL2_Switch_Pin   GPIO_PIN_7"
+
+.PP
+Definition at line \fB78\fP of file \fBmain\&.h\fP\&.
+.SS "#define Reset_GPIO_Port   GPIOA"
+
+.PP
+Definition at line \fB71\fP of file \fBmain\&.h\fP\&.
+.SS "#define Reset_Pin   GPIO_PIN_9"
+
+.PP
+Definition at line \fB70\fP of file \fBmain\&.h\fP\&.
+.SS "#define SCHP_GPIO_Port   GPIOC"
+
+.PP
+Definition at line \fB77\fP of file \fBmain\&.h\fP\&.
+.SS "#define SCHP_Pin   GPIO_PIN_10"
+
+.PP
+Definition at line \fB76\fP of file \fBmain\&.h\fP\&.
+.SS "#define STCP_GPIO_Port   GPIOB"
+
+.PP
+Definition at line \fB63\fP of file \fBmain\&.h\fP\&.
+.SS "#define STCP_Pin   GPIO_PIN_12"
+
+.PP
+Definition at line \fB62\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL1_Car_GPIO_Port   GPIOC"
+
+.PP
+Definition at line \fB61\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL1_Car_Pin   GPIO_PIN_4"
+
+.PP
+Definition at line \fB60\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL2_Car_GPIO_Port   GPIOB"
+
+.PP
+Definition at line \fB65\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL2_Car_Pin   GPIO_PIN_13"
+
+.PP
+Definition at line \fB64\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL3_Car_GPIO_Port   GPIOB"
+
+.PP
+Definition at line \fB67\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL3_Car_Pin   GPIO_PIN_14"
+
+.PP
+Definition at line \fB66\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL4_Car_GPIO_Port   GPIOA"
+
+.PP
+Definition at line \fB73\fP of file \fBmain\&.h\fP\&.
+.SS "#define TL4_Car_Pin   GPIO_PIN_10"
+
+.PP
+Definition at line \fB72\fP of file \fBmain\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void Error_Handler (void)"
+
+.PP
+This function is executed in case of error occurrence\&. 
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB208\fP of file \fBmain\&.c\fP\&.
+.PP
+.nf
+209 {
+210   /* USER CODE BEGIN Error_Handler_Debug */
+211   /* User can add his own implementation to report the HAL error return state */
+212   __disable_irq();
+213   while (1)
+214   {
+215   }
+216   /* USER CODE END Error_Handler_Debug */
+217 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

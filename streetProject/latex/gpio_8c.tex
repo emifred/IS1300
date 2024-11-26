@@ -1,0 +1,115 @@
+\hypertarget{gpio_8c}{}\doxysection{Core/\+Src/gpio.c File Reference}
+\label{gpio_8c}\index{Core/Src/gpio.c@{Core/Src/gpio.c}}
+
+
+This file provides code for the configuration of all used GPIO pins.  
+
+
+{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gpio_8c_ac724e431d2af879252de35615be2bdea}{MX\+\_\+\+GPIO\+\_\+\+Init}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of all used GPIO pins. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition in file \mbox{\hyperlink{gpio_8c_source}{gpio.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gpio_8c_ac724e431d2af879252de35615be2bdea}\label{gpio_8c_ac724e431d2af879252de35615be2bdea}} 
+\index{gpio.c@{gpio.c}!MX\_GPIO\_Init@{MX\_GPIO\_Init}}
+\index{MX\_GPIO\_Init@{MX\_GPIO\_Init}!gpio.c@{gpio.c}}
+\doxysubsubsection{\texorpdfstring{MX\_GPIO\_Init()}{MX\_GPIO\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+GPIO\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Configure pins as Analog Input Output EVENT\+\_\+\+OUT EXTI 
+
+Definition at line \mbox{\hyperlink{gpio_8c_source_l00042}{42}} of file \mbox{\hyperlink{gpio_8c_source}{gpio.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043 \{}
+\DoxyCodeLine{00044 }
+\DoxyCodeLine{00045   GPIO\_InitTypeDef GPIO\_InitStruct = \{0\};}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047   \textcolor{comment}{/* GPIO Ports Clock Enable */}}
+\DoxyCodeLine{00048   \_\_HAL\_RCC\_GPIOH\_CLK\_ENABLE();}
+\DoxyCodeLine{00049   \_\_HAL\_RCC\_GPIOC\_CLK\_ENABLE();}
+\DoxyCodeLine{00050   \_\_HAL\_RCC\_GPIOB\_CLK\_ENABLE();}
+\DoxyCodeLine{00051   \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053   \textcolor{comment}{/*Configure GPIO pin Output Level */}}
+\DoxyCodeLine{00054   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a09e274fac664cd8bebacd9fd709cbbe5}{STCP\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac8b65ea9a21eee29dd698458f0733df8}{STCP\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{00055 }
+\DoxyCodeLine{00056   \textcolor{comment}{/*Configure GPIO pin Output Level */}}
+\DoxyCodeLine{00057   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_aa9d3200741adf7c40d54cc3ac023c2d3}{Enable\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a4c287bca8fad626e828ee127000a23a3}{Enable\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059   \textcolor{comment}{/*Configure GPIO pin Output Level */}}
+\DoxyCodeLine{00060   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a1295dc826888461a14272b9b5b41a360}{Reset\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac463ce2e029f6c2bfccbab172120cbe6}{Reset\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00063   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_a223d19c7838d497513962c08b979e003}{TL1\_Car\_Pin}};}
+\DoxyCodeLine{00064   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{00065   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{00066   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a5814ebcd4418dc815e17ddf0a5806f31}{TL1\_Car\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00067 }
+\DoxyCodeLine{00068   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00069   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_ac8b65ea9a21eee29dd698458f0733df8}{STCP\_Pin}};}
+\DoxyCodeLine{00070   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{00071   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{00072   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{00073   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a09e274fac664cd8bebacd9fd709cbbe5}{STCP\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075   \textcolor{comment}{/*Configure GPIO pins : PBPin PBPin */}}
+\DoxyCodeLine{00076   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_aa97c4a29e4c1aa98f3d0a55be0f58d9b}{TL2\_Car\_Pin}}|\mbox{\hyperlink{main_8h_a0c2da8d2b50ac9c1c4c44459e4edf7d7}{TL3\_Car\_Pin}};}
+\DoxyCodeLine{00077   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{00078   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{00079   HAL\_GPIO\_Init(GPIOB, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00082   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_a4c287bca8fad626e828ee127000a23a3}{Enable\_Pin}};}
+\DoxyCodeLine{00083   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{00084   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{00085   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{00086   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_aa9d3200741adf7c40d54cc3ac023c2d3}{Enable\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00087 }
+\DoxyCodeLine{00088   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00089   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_ac463ce2e029f6c2bfccbab172120cbe6}{Reset\_Pin}};}
+\DoxyCodeLine{00090   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{00091   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{00092   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{00093   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a1295dc826888461a14272b9b5b41a360}{Reset\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00094 }
+\DoxyCodeLine{00095   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00096   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_ad1e8729cd5e393ab6b45633d7b50c34f}{TL4\_Car\_Pin}};}
+\DoxyCodeLine{00097   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{00098   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{00099   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a8a01f2b541a1f9614fe6a586f8223c92}{TL4\_Car\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00100 }
+\DoxyCodeLine{00101   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00102   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_afa116f01d095e7445dab67f9a0843240}{PL1\_Switch\_Pin}};}
+\DoxyCodeLine{00103   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{00104   GPIO\_InitStruct.Pull = GPIO\_PULLUP;}
+\DoxyCodeLine{00105   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_af5c0f4dbc87a860c2fe911f625c37875}{PL1\_Switch\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{00108   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_a962dd15883ef7bbb3378223d365c4219}{PL2\_Switch\_Pin}};}
+\DoxyCodeLine{00109   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{00110   GPIO\_InitStruct.Pull = GPIO\_PULLUP;}
+\DoxyCodeLine{00111   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a8a5edac5ed5b9a20270d4a080cf2f0bf}{PL2\_Switch\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{00112 }
+\DoxyCodeLine{00113 \}}
+
+\end{DoxyCode}

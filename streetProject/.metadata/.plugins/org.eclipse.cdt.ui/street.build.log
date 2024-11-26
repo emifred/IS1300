@@ -1,0 +1,17 @@
+15:29:21 **** Incremental Build of configuration Debug for project street ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/Test.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/Test.d" -MT"Core/Src/Test.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Test.o"
+arm-none-eabi-gcc -o "street.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/emil/streetTest/street/STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="street.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: street.elf
+ 
+arm-none-eabi-size   street.elf 
+arm-none-eabi-objdump -h -S  street.elf  > "street.list"
+   text	   data	    bss	    dec	    hex	filename
+  28836	    148	   9396	  38380	   95ec	street.elf
+Finished building: default.size.stdout
+ 
+Finished building: street.list
+ 
+
+15:29:22 Build Finished. 0 errors, 0 warnings. (took 1s.5ms)
+

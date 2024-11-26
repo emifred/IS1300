@@ -1,0 +1,5 @@
+../Core/Src/Test.c:29:6:Test_Led	16	static
+../Core/Src/Test.c:50:6:Test_Input	8	static
+../Core/Src/Test.c:93:6:Test_Switches	8	static
+../Core/Src/Test.c:107:6:Test_States	8	static
+../Core/Src/Test.c:118:6:Test_program	8	static

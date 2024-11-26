@@ -1,0 +1,163 @@
+.TH "Core/Src/spi.c" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Src/spi.c \- This file provides code for the configuration of the SPI instances\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'spi\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBMX_SPI3_Init\fP (void)"
+.br
+.ti -1c
+.RI "void \fBHAL_SPI_MspInit\fP (SPI_HandleTypeDef *spiHandle)"
+.br
+.ti -1c
+.RI "void \fBHAL_SPI_MspDeInit\fP (SPI_HandleTypeDef *spiHandle)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "SPI_HandleTypeDef \fBhspi3\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file provides code for the configuration of the SPI instances\&. 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBspi\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void HAL_SPI_MspDeInit (SPI_HandleTypeDef * spiHandle)"
+SPI3 GPIO Configuration PC10 ------> SPI3_SCK PB5 ------> SPI3_MOSI
+.PP
+Definition at line \fB102\fP of file \fBspi\&.c\fP\&.
+.PP
+.nf
+103 {
+104 
+105   if(spiHandle->Instance==SPI3)
+106   {
+107   /* USER CODE BEGIN SPI3_MspDeInit 0 */
+108 
+109   /* USER CODE END SPI3_MspDeInit 0 */
+110     /* Peripheral clock disable */
+111     __HAL_RCC_SPI3_CLK_DISABLE();
+112 
+117     HAL_GPIO_DeInit(SCHP_GPIO_Port, SCHP_Pin);
+118 
+119     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_5);
+120 
+121   /* USER CODE BEGIN SPI3_MspDeInit 1 */
+122 
+123   /* USER CODE END SPI3_MspDeInit 1 */
+124   }
+125 }
+.fi
+.SS "void HAL_SPI_MspInit (SPI_HandleTypeDef * spiHandle)"
+SPI3 GPIO Configuration PC10 ------> SPI3_SCK PB5 ------> SPI3_MOSI
+.PP
+Definition at line \fB64\fP of file \fBspi\&.c\fP\&.
+.PP
+.nf
+65 {
+66 
+67   GPIO_InitTypeDef GPIO_InitStruct = {0};
+68   if(spiHandle->Instance==SPI3)
+69   {
+70   /* USER CODE BEGIN SPI3_MspInit 0 */
+71 
+72   /* USER CODE END SPI3_MspInit 0 */
+73     /* SPI3 clock enable */
+74     __HAL_RCC_SPI3_CLK_ENABLE();
+75 
+76     __HAL_RCC_GPIOC_CLK_ENABLE();
+77     __HAL_RCC_GPIOB_CLK_ENABLE();
+82     GPIO_InitStruct\&.Pin = SCHP_Pin;
+83     GPIO_InitStruct\&.Mode = GPIO_MODE_AF_PP;
+84     GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+85     GPIO_InitStruct\&.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+86     GPIO_InitStruct\&.Alternate = GPIO_AF6_SPI3;
+87     HAL_GPIO_Init(SCHP_GPIO_Port, &GPIO_InitStruct);
+88 
+89     GPIO_InitStruct\&.Pin = GPIO_PIN_5;
+90     GPIO_InitStruct\&.Mode = GPIO_MODE_AF_PP;
+91     GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+92     GPIO_InitStruct\&.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+93     GPIO_InitStruct\&.Alternate = GPIO_AF6_SPI3;
+94     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+95 
+96   /* USER CODE BEGIN SPI3_MspInit 1 */
+97 
+98   /* USER CODE END SPI3_MspInit 1 */
+99   }
+100 }
+.fi
+.SS "void MX_SPI3_Init (void)"
+
+.PP
+Definition at line \fB30\fP of file \fBspi\&.c\fP\&.
+.PP
+.nf
+31 {
+32 
+33   /* USER CODE BEGIN SPI3_Init 0 */
+34 
+35   /* USER CODE END SPI3_Init 0 */
+36 
+37   /* USER CODE BEGIN SPI3_Init 1 */
+38 
+39   /* USER CODE END SPI3_Init 1 */
+40   hspi3\&.Instance = SPI3;
+41   hspi3\&.Init\&.Mode = SPI_MODE_MASTER;
+42   hspi3\&.Init\&.Direction = SPI_DIRECTION_1LINE;
+43   hspi3\&.Init\&.DataSize = SPI_DATASIZE_8BIT;
+44   hspi3\&.Init\&.CLKPolarity = SPI_POLARITY_LOW;
+45   hspi3\&.Init\&.CLKPhase = SPI_PHASE_1EDGE;
+46   hspi3\&.Init\&.NSS = SPI_NSS_SOFT;
+47   hspi3\&.Init\&.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_128;
+48   hspi3\&.Init\&.FirstBit = SPI_FIRSTBIT_MSB;
+49   hspi3\&.Init\&.TIMode = SPI_TIMODE_DISABLE;
+50   hspi3\&.Init\&.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+51   hspi3\&.Init\&.CRCPolynomial = 7;
+52   hspi3\&.Init\&.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+53   hspi3\&.Init\&.NSSPMode = SPI_NSS_PULSE_ENABLE;
+54   if (HAL_SPI_Init(&hspi3) != HAL_OK)
+55   {
+56     Error_Handler();
+57   }
+58   /* USER CODE BEGIN SPI3_Init 2 */
+59 
+60   /* USER CODE END SPI3_Init 2 */
+61 
+62 }
+.fi
+.SH "Variable Documentation"
+.PP 
+.SS "SPI_HandleTypeDef hspi3"
+
+.PP
+Definition at line \fB27\fP of file \fBspi\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

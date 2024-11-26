@@ -1,0 +1,348 @@
+\hypertarget{main_8c}{}\doxysection{Core/\+Src/main.c File Reference}
+\label{main_8c}\index{Core/Src/main.c@{Core/Src/main.c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cmsis\+\_\+os.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}spi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Free\+RTOS.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}street\+Func.\+H\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Test.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_abade755e13d07c10889ae83143656158}{MX\+\_\+\+FREERTOS\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS initialization. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{HAL\+\_\+\+TIM\+\_\+\+Period\+Elapsed\+Callback}} (TIM\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Main program body 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition in file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a1730ffe1e560465665eb47d9264826f9}\label{main_8c_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.c@{main.c}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00208}{208}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00209 \{}
+\DoxyCodeLine{00210   \textcolor{comment}{/* USER CODE BEGIN Error\_Handler\_Debug */}}
+\DoxyCodeLine{00211   \textcolor{comment}{/* User can add his own implementation to report the HAL error return state */}}
+\DoxyCodeLine{00212   \_\_disable\_irq();}
+\DoxyCodeLine{00213   \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00214   \{}
+\DoxyCodeLine{00215   \}}
+\DoxyCodeLine{00216   \textcolor{comment}{/* USER CODE END Error\_Handler\_Debug */}}
+\DoxyCodeLine{00217 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}\label{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}} 
+\index{main.c@{main.c}!HAL\_TIM\_PeriodElapsedCallback@{HAL\_TIM\_PeriodElapsedCallback}}
+\index{HAL\_TIM\_PeriodElapsedCallback@{HAL\_TIM\_PeriodElapsedCallback}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_PeriodElapsedCallback()}{HAL\_TIM\_PeriodElapsedCallback()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+TIM\+\_\+\+Period\+Elapsed\+Callback (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+Period elapsed callback in non blocking mode. 
+
+\begin{DoxyNote}{Note}
+This function is called when TIM1 interrupt took place, inside HAL\+\_\+\+TIM\+\_\+\+IRQHandler(). It makes a direct call to HAL\+\_\+\+Inc\+Tick() to increment a global variable \char`\"{}uw\+Tick\char`\"{} used as application time base. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & \+: TIM handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00191}{191}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00192 \{}
+\DoxyCodeLine{00193   \textcolor{comment}{/* USER CODE BEGIN Callback 0 */}}
+\DoxyCodeLine{00194 }
+\DoxyCodeLine{00195   \textcolor{comment}{/* USER CODE END Callback 0 */}}
+\DoxyCodeLine{00196   \textcolor{keywordflow}{if} (htim-\/>Instance == TIM1) \{}
+\DoxyCodeLine{00197     HAL\_IncTick();}
+\DoxyCodeLine{00198   \}}
+\DoxyCodeLine{00199   \textcolor{comment}{/* USER CODE BEGIN Callback 1 */}}
+\DoxyCodeLine{00200 }
+\DoxyCodeLine{00201   \textcolor{comment}{/* USER CODE END Callback 1 */}}
+\DoxyCodeLine{00202 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00072}{72}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073 \{}
+\DoxyCodeLine{00074   \textcolor{comment}{/* USER CODE BEGIN 1 */}}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076   \textcolor{comment}{/* USER CODE END 1 */}}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078   \textcolor{comment}{/* MCU Configuration-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080   \textcolor{comment}{/* Reset of all peripherals, Initializes the Flash interface and the Systick. */}}
+\DoxyCodeLine{00081   HAL\_Init();}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083   \textcolor{comment}{/* USER CODE BEGIN Init */}}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085   \textcolor{comment}{/* USER CODE END Init */}}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087   \textcolor{comment}{/* Configure the system clock */}}
+\DoxyCodeLine{00088   \mbox{\hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{SystemClock\_Config}}();}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090   \textcolor{comment}{/* USER CODE BEGIN SysInit */}}
+\DoxyCodeLine{00091 }
+\DoxyCodeLine{00092   \textcolor{comment}{/* USER CODE END SysInit */}}
+\DoxyCodeLine{00093 }
+\DoxyCodeLine{00094   \textcolor{comment}{/* Initialize all configured peripherals */}}
+\DoxyCodeLine{00095   \mbox{\hyperlink{gpio_8h_ac724e431d2af879252de35615be2bdea}{MX\_GPIO\_Init}}();}
+\DoxyCodeLine{00096   \mbox{\hyperlink{spi_8h_a03aff927b2793cac09e443299c6d6e7e}{MX\_SPI3\_Init}}();}
+\DoxyCodeLine{00097   \textcolor{comment}{/* USER CODE BEGIN 2 */}}
+\DoxyCodeLine{00098   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a1295dc826888461a14272b9b5b41a360}{Reset\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac463ce2e029f6c2bfccbab172120cbe6}{Reset\_Pin}}, GPIO\_PIN\_SET);}
+\DoxyCodeLine{00099     \textcolor{comment}{//Set Enable active low}}
+\DoxyCodeLine{00100   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_aa9d3200741adf7c40d54cc3ac023c2d3}{Enable\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a4c287bca8fad626e828ee127000a23a3}{Enable\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103 \textcolor{preprocessor}{\#ifdef RUN\_TEST\_PROGRAM }}
+\DoxyCodeLine{00104       \mbox{\hyperlink{_test_8h_a62677bdd6f6d74d889a0fa118f269150}{Test\_program}}();}
+\DoxyCodeLine{00105 \textcolor{preprocessor}{\#else }}
+\DoxyCodeLine{00106      \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\_Clear}}();}
+\DoxyCodeLine{00107       \textcolor{comment}{/* Init scheduler */}}
+\DoxyCodeLine{00108       osKernelInitialize();  \textcolor{comment}{/* Call init function for freertos objects (in freertos.c) */}}
+\DoxyCodeLine{00109       \mbox{\hyperlink{main_8c_abade755e13d07c10889ae83143656158}{MX\_FREERTOS\_Init}}();}
+\DoxyCodeLine{00110 }
+\DoxyCodeLine{00111       \textcolor{comment}{/* Start scheduler */}}
+\DoxyCodeLine{00112       osKernelStart();}
+\DoxyCodeLine{00113 \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00114   \textcolor{comment}{/* USER CODE END 2 */}}
+\DoxyCodeLine{00115 }
+\DoxyCodeLine{00116   \textcolor{comment}{/* We should never get here as control is now taken by the scheduler */}}
+\DoxyCodeLine{00117   \textcolor{comment}{/* Infinite loop */}}
+\DoxyCodeLine{00118   \textcolor{comment}{/* USER CODE BEGIN WHILE */}}
+\DoxyCodeLine{00119   \textcolor{comment}{// Reset all shift registers}}
+\DoxyCodeLine{00120 }
+\DoxyCodeLine{00121   \textcolor{keywordflow}{while} (1)}
+\DoxyCodeLine{00122   \{}
+\DoxyCodeLine{00123     \textcolor{comment}{/* USER CODE END WHILE */}}
+\DoxyCodeLine{00124 }
+\DoxyCodeLine{00125     \textcolor{comment}{/* USER CODE BEGIN 3 */}}
+\DoxyCodeLine{00126   \}}
+\DoxyCodeLine{00127   \textcolor{comment}{/* USER CODE END 3 */}}
+\DoxyCodeLine{00128 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_abade755e13d07c10889ae83143656158}\label{main_8c_abade755e13d07c10889ae83143656158}} 
+\index{main.c@{main.c}!MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}}
+\index{MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{MX\_FREERTOS\_Init()}{MX\_FREERTOS\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+FREERTOS\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line \mbox{\hyperlink{freertos_8c_source_l00119}{119}} of file \mbox{\hyperlink{freertos_8c_source}{freertos.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119                             \{}
+\DoxyCodeLine{00120     \textcolor{comment}{/* USER CODE BEGIN Init */}}
+\DoxyCodeLine{00121     \textcolor{comment}{/* USER CODE END Init */}}
+\DoxyCodeLine{00122     \textcolor{comment}{/* Create the mutex(es) */}}
+\DoxyCodeLine{00123     \textcolor{comment}{/* creation of event */}}
+\DoxyCodeLine{00124     \mbox{\hyperlink{freertos_8c_a3e26164b40f68b09321111183e2e4987}{eventHandle}} = osMutexNew(\&\mbox{\hyperlink{freertos_8c_a74844844ea4fff03f44694ef98cfa570}{event\_attributes}});}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126     \textcolor{comment}{/* USER CODE BEGIN RTOS\_MUTEX */}}
+\DoxyCodeLine{00127     \textcolor{comment}{/* add mutexes, ... */}}
+\DoxyCodeLine{00128 }
+\DoxyCodeLine{00129     \textcolor{comment}{/* USER CODE END RTOS\_MUTEX */}}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131     \textcolor{comment}{/* Create the semaphores(s) */}}
+\DoxyCodeLine{00132     \textcolor{comment}{/* creation of buttonsSem */}}
+\DoxyCodeLine{00133     \mbox{\hyperlink{freertos_8c_abf4b45b98377a8a6eccf0809e4d31725}{buttonsSemHandle}} = osSemaphoreNew(1, 1, \&\mbox{\hyperlink{freertos_8c_a6992907106fb60110f6a660d9842128c}{buttonsSem\_attributes}});}
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135     \textcolor{comment}{/* creation of switchesSem */}}
+\DoxyCodeLine{00136     \mbox{\hyperlink{freertos_8c_aa6fc76f3ff29c5ee86d6a47d71429010}{switchesSemHandle}} = osSemaphoreNew(1, 1, \&\mbox{\hyperlink{freertos_8c_af3d4b834fac4d1d2c2eb503089f9ca34}{switchesSem\_attributes}});}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138     \textcolor{comment}{/* USER CODE BEGIN RTOS\_SEMAPHORES */}}
+\DoxyCodeLine{00139     \textcolor{comment}{/* add semaphores, ... */}}
+\DoxyCodeLine{00140     \textcolor{comment}{/* USER CODE END RTOS\_SEMAPHORES */}}
+\DoxyCodeLine{00141 }
+\DoxyCodeLine{00142     \textcolor{comment}{/* USER CODE BEGIN RTOS\_TIMERS */}}
+\DoxyCodeLine{00143     \textcolor{comment}{/* start timers, add new ones, ... */}}
+\DoxyCodeLine{00144     \textcolor{comment}{/* USER CODE END RTOS\_TIMERS */}}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146     \textcolor{comment}{/* USER CODE BEGIN RTOS\_QUEUES */}}
+\DoxyCodeLine{00147     \textcolor{comment}{/* add queues, ... */}}
+\DoxyCodeLine{00148     \textcolor{comment}{/* USER CODE END RTOS\_QUEUES */}}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150     \textcolor{comment}{/* Create the thread(s) */}}
+\DoxyCodeLine{00151     \textcolor{comment}{/* creation of defaultTask */}}
+\DoxyCodeLine{00152     \mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{defaultTaskHandle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}{StartDefaultTask}}, NULL,}
+\DoxyCodeLine{00153             \&\mbox{\hyperlink{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d}{defaultTask\_attributes}});}
+\DoxyCodeLine{00154 }
+\DoxyCodeLine{00155     \textcolor{comment}{/* creation of GPIO\_Button1 */}}
+\DoxyCodeLine{00156     \mbox{\hyperlink{freertos_8c_a33e8e34c761eeb08f3b0e178a6f7ce40}{GPIO\_Button1Handle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_aeafb859292598db54581baaa344d59cb}{Button\_Task1}}, NULL,}
+\DoxyCodeLine{00157             \&\mbox{\hyperlink{freertos_8c_a7e6513d6375e4351eb4b39dc33ecab0b}{GPIO\_Button1\_attributes}});}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159     \textcolor{comment}{/* creation of GPIO\_Switches */}}
+\DoxyCodeLine{00160     \mbox{\hyperlink{freertos_8c_ac8615a3d6a5dea085462cf31c9b3c327}{GPIO\_SwitchesHandle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_a5cf4553c080fd563e809fd90ad3b1574}{Switches}}, NULL,}
+\DoxyCodeLine{00161             \&\mbox{\hyperlink{freertos_8c_ab997bf8de8af1f6f4b4ddfd0ad9c4348}{GPIO\_Switches\_attributes}});}
+\DoxyCodeLine{00162 }
+\DoxyCodeLine{00163     \textcolor{comment}{/* creation of Timer\_Func */}}
+\DoxyCodeLine{00164     \mbox{\hyperlink{freertos_8c_a7e680510819f942d613b0ff1d69bee07}{Timer\_FuncHandle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_acb8dfd161d93f95ba378b084449ec87f}{timer}}, NULL, \&\mbox{\hyperlink{freertos_8c_a3e9fb619bf5fe6214d77755f3006da41}{Timer\_Func\_attributes}});}
+\DoxyCodeLine{00165 }
+\DoxyCodeLine{00166     \textcolor{comment}{/* creation of GPIO\_Button2 */}}
+\DoxyCodeLine{00167     \mbox{\hyperlink{freertos_8c_ae0b5a3926d62b2c704eb23fc46dbb95e}{GPIO\_Button2Handle}} = osThreadNew(\mbox{\hyperlink{freertos_8c_a902786d9e4dc3a288b3e7cd06ee25ebb}{Button\_Task2}}, NULL,}
+\DoxyCodeLine{00168             \&\mbox{\hyperlink{freertos_8c_a5ddd8bd300328e835a12e30814efd0f5}{GPIO\_Button2\_attributes}});}
+\DoxyCodeLine{00169 }
+\DoxyCodeLine{00170     \textcolor{comment}{/* USER CODE BEGIN RTOS\_THREADS */}}
+\DoxyCodeLine{00171     \textcolor{comment}{/* add threads, ... */}}
+\DoxyCodeLine{00172     \textcolor{comment}{/* USER CODE END RTOS\_THREADS */}}
+\DoxyCodeLine{00173 }
+\DoxyCodeLine{00174     \textcolor{comment}{/* USER CODE BEGIN RTOS\_EVENTS */}}
+\DoxyCodeLine{00175     \textcolor{comment}{/* add events, ... */}}
+\DoxyCodeLine{00176     \textcolor{comment}{/* USER CODE END RTOS\_EVENTS */}}
+\DoxyCodeLine{00177 }
+\DoxyCodeLine{00178 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}\label{main_8c_a70af21c671abfcc773614a9a4f63d920}} 
+\index{main.c@{main.c}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Configure the main internal regulator output voltage
+
+Initializes the RCC Oscillators according to the specified parameters in the RCC\+\_\+\+Osc\+Init\+Type\+Def structure.
+
+Initializes the CPU, AHB and APB buses clocks
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00134}{134}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00135 \{}
+\DoxyCodeLine{00136   RCC\_OscInitTypeDef RCC\_OscInitStruct = \{0\};}
+\DoxyCodeLine{00137   RCC\_ClkInitTypeDef RCC\_ClkInitStruct = \{0\};}
+\DoxyCodeLine{00138 }
+\DoxyCodeLine{00141   \textcolor{keywordflow}{if} (HAL\_PWREx\_ControlVoltageScaling(PWR\_REGULATOR\_VOLTAGE\_SCALE1) != HAL\_OK)}
+\DoxyCodeLine{00142   \{}
+\DoxyCodeLine{00143     \mbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();}
+\DoxyCodeLine{00144   \}}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00149   RCC\_OscInitStruct.OscillatorType = RCC\_OSCILLATORTYPE\_HSI;}
+\DoxyCodeLine{00150   RCC\_OscInitStruct.HSIState = RCC\_HSI\_ON;}
+\DoxyCodeLine{00151   RCC\_OscInitStruct.HSICalibrationValue = RCC\_HSICALIBRATION\_DEFAULT;}
+\DoxyCodeLine{00152   RCC\_OscInitStruct.PLL.PLLState = RCC\_PLL\_ON;}
+\DoxyCodeLine{00153   RCC\_OscInitStruct.PLL.PLLSource = RCC\_PLLSOURCE\_HSI;}
+\DoxyCodeLine{00154   RCC\_OscInitStruct.PLL.PLLM = 1;}
+\DoxyCodeLine{00155   RCC\_OscInitStruct.PLL.PLLN = 10;}
+\DoxyCodeLine{00156   RCC\_OscInitStruct.PLL.PLLP = RCC\_PLLP\_DIV7;}
+\DoxyCodeLine{00157   RCC\_OscInitStruct.PLL.PLLQ = RCC\_PLLQ\_DIV2;}
+\DoxyCodeLine{00158   RCC\_OscInitStruct.PLL.PLLR = RCC\_PLLR\_DIV2;}
+\DoxyCodeLine{00159   \textcolor{keywordflow}{if} (HAL\_RCC\_OscConfig(\&RCC\_OscInitStruct) != HAL\_OK)}
+\DoxyCodeLine{00160   \{}
+\DoxyCodeLine{00161     \mbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();}
+\DoxyCodeLine{00162   \}}
+\DoxyCodeLine{00163 }
+\DoxyCodeLine{00166   RCC\_ClkInitStruct.ClockType = RCC\_CLOCKTYPE\_HCLK|RCC\_CLOCKTYPE\_SYSCLK}
+\DoxyCodeLine{00167                               |RCC\_CLOCKTYPE\_PCLK1|RCC\_CLOCKTYPE\_PCLK2;}
+\DoxyCodeLine{00168   RCC\_ClkInitStruct.SYSCLKSource = RCC\_SYSCLKSOURCE\_PLLCLK;}
+\DoxyCodeLine{00169   RCC\_ClkInitStruct.AHBCLKDivider = RCC\_SYSCLK\_DIV1;}
+\DoxyCodeLine{00170   RCC\_ClkInitStruct.APB1CLKDivider = RCC\_HCLK\_DIV1;}
+\DoxyCodeLine{00171   RCC\_ClkInitStruct.APB2CLKDivider = RCC\_HCLK\_DIV1;}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173   \textcolor{keywordflow}{if} (HAL\_RCC\_ClockConfig(\&RCC\_ClkInitStruct, FLASH\_LATENCY\_4) != HAL\_OK)}
+\DoxyCodeLine{00174   \{}
+\DoxyCodeLine{00175     \mbox{\hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();}
+\DoxyCodeLine{00176   \}}
+\DoxyCodeLine{00177 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,60 @@
+\hypertarget{stm32l4xx__hal__msp_8c}{}\doxysection{Core/\+Src/stm32l4xx\+\_\+hal\+\_\+msp.c File Reference}
+\label{stm32l4xx__hal__msp_8c}\index{Core/Src/stm32l4xx\_hal\_msp.c@{Core/Src/stm32l4xx\_hal\_msp.c}}
+
+
+This file provides code for the MSP Initialization and de-\/\+Initialization codes.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{stm32l4xx__hal__msp_8c_ae4fb8e66865c87d0ebab74a726a6891f}{HAL\+\_\+\+Msp\+Init}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the MSP Initialization and de-\/\+Initialization codes. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition in file \mbox{\hyperlink{stm32l4xx__hal__msp_8c_source}{stm32l4xx\+\_\+hal\+\_\+msp.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stm32l4xx__hal__msp_8c_ae4fb8e66865c87d0ebab74a726a6891f}\label{stm32l4xx__hal__msp_8c_ae4fb8e66865c87d0ebab74a726a6891f}} 
+\index{stm32l4xx\_hal\_msp.c@{stm32l4xx\_hal\_msp.c}!HAL\_MspInit@{HAL\_MspInit}}
+\index{HAL\_MspInit@{HAL\_MspInit}!stm32l4xx\_hal\_msp.c@{stm32l4xx\_hal\_msp.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_MspInit()}{HAL\_MspInit()}}
+{\footnotesize\ttfamily void HAL\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Initializes the Global MSP. 
+
+Definition at line \mbox{\hyperlink{stm32l4xx__hal__msp_8c_source_l00063}{63}} of file \mbox{\hyperlink{stm32l4xx__hal__msp_8c_source}{stm32l4xx\+\_\+hal\+\_\+msp.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064 \{}
+\DoxyCodeLine{00065   \textcolor{comment}{/* USER CODE BEGIN MspInit 0 */}}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067   \textcolor{comment}{/* USER CODE END MspInit 0 */}}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069   \_\_HAL\_RCC\_SYSCFG\_CLK\_ENABLE();}
+\DoxyCodeLine{00070   \_\_HAL\_RCC\_PWR\_CLK\_ENABLE();}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072   \textcolor{comment}{/* System interrupt init*/}}
+\DoxyCodeLine{00073   \textcolor{comment}{/* PendSV\_IRQn interrupt configuration */}}
+\DoxyCodeLine{00074   HAL\_NVIC\_SetPriority(PendSV\_IRQn, 15, 0);}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076   \textcolor{comment}{/* USER CODE BEGIN MspInit 1 */}}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078   \textcolor{comment}{/* USER CODE END MspInit 1 */}}
+\DoxyCodeLine{00079 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,94 @@
+\hypertarget{spi_8h}{}\doxysection{Core/\+Inc/spi.h File Reference}
+\label{spi_8h}\index{Core/Inc/spi.h@{Core/Inc/spi.h}}
+
+
+This file contains all the function prototypes for the \mbox{\hyperlink{spi_8c}{spi.\+c}} file.  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{spi_8h_a03aff927b2793cac09e443299c6d6e7e}{MX\+\_\+\+SPI3\+\_\+\+Init}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{spi_8h_aec51920045aad7f70cbfd1f58228d866}{hspi3}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains all the function prototypes for the \mbox{\hyperlink{spi_8c}{spi.\+c}} file. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition in file \mbox{\hyperlink{spi_8h_source}{spi.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{spi_8h_a03aff927b2793cac09e443299c6d6e7e}\label{spi_8h_a03aff927b2793cac09e443299c6d6e7e}} 
+\index{spi.h@{spi.h}!MX\_SPI3\_Init@{MX\_SPI3\_Init}}
+\index{MX\_SPI3\_Init@{MX\_SPI3\_Init}!spi.h@{spi.h}}
+\doxysubsubsection{\texorpdfstring{MX\_SPI3\_Init()}{MX\_SPI3\_Init()}}
+{\footnotesize\ttfamily void MX\+\_\+\+SPI3\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{spi_8c_source_l00030}{30}} of file \mbox{\hyperlink{spi_8c_source}{spi.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031 \{}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033   \textcolor{comment}{/* USER CODE BEGIN SPI3\_Init 0 */}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035   \textcolor{comment}{/* USER CODE END SPI3\_Init 0 */}}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037   \textcolor{comment}{/* USER CODE BEGIN SPI3\_Init 1 */}}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039   \textcolor{comment}{/* USER CODE END SPI3\_Init 1 */}}
+\DoxyCodeLine{00040   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Instance = SPI3;}
+\DoxyCodeLine{00041   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.Mode = SPI\_MODE\_MASTER;}
+\DoxyCodeLine{00042   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.Direction = SPI\_DIRECTION\_1LINE;}
+\DoxyCodeLine{00043   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.DataSize = SPI\_DATASIZE\_8BIT;}
+\DoxyCodeLine{00044   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.CLKPolarity = SPI\_POLARITY\_LOW;}
+\DoxyCodeLine{00045   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.CLKPhase = SPI\_PHASE\_1EDGE;}
+\DoxyCodeLine{00046   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.NSS = SPI\_NSS\_SOFT;}
+\DoxyCodeLine{00047   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.BaudRatePrescaler = SPI\_BAUDRATEPRESCALER\_128;}
+\DoxyCodeLine{00048   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.FirstBit = SPI\_FIRSTBIT\_MSB;}
+\DoxyCodeLine{00049   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.TIMode = SPI\_TIMODE\_DISABLE;}
+\DoxyCodeLine{00050   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.CRCCalculation = SPI\_CRCCALCULATION\_DISABLE;}
+\DoxyCodeLine{00051   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.CRCPolynomial = 7;}
+\DoxyCodeLine{00052   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.CRCLength = SPI\_CRC\_LENGTH\_DATASIZE;}
+\DoxyCodeLine{00053   \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}.Init.NSSPMode = SPI\_NSS\_PULSE\_ENABLE;}
+\DoxyCodeLine{00054   \textcolor{keywordflow}{if} (HAL\_SPI\_Init(\&\mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}) != HAL\_OK)}
+\DoxyCodeLine{00055   \{}
+\DoxyCodeLine{00056     \mbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}}();}
+\DoxyCodeLine{00057   \}}
+\DoxyCodeLine{00058   \textcolor{comment}{/* USER CODE BEGIN SPI3\_Init 2 */}}
+\DoxyCodeLine{00059 }
+\DoxyCodeLine{00060   \textcolor{comment}{/* USER CODE END SPI3\_Init 2 */}}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{spi_8h_aec51920045aad7f70cbfd1f58228d866}\label{spi_8h_aec51920045aad7f70cbfd1f58228d866}} 
+\index{spi.h@{spi.h}!hspi3@{hspi3}}
+\index{hspi3@{hspi3}!spi.h@{spi.h}}
+\doxysubsubsection{\texorpdfstring{hspi3}{hspi3}}
+{\footnotesize\ttfamily SPI\+\_\+\+Handle\+Type\+Def hspi3\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{spi_8c_source_l00027}{27}} of file \mbox{\hyperlink{spi_8c_source}{spi.\+c}}.
+

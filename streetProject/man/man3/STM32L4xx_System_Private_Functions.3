@@ -1,0 +1,164 @@
+.TH "STM32L4xx_System_Private_Functions" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+STM32L4xx_System_Private_Functions \- STM32L4xx_System_Private_Functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSystemInit\fP (void)"
+.br
+.RI "Setup the microcontroller system\&. "
+.ti -1c
+.RI "void \fBSystemCoreClockUpdate\fP (void)"
+.br
+.RI "Update SystemCoreClock variable according to Clock Register Values\&. The SystemCoreClock variable contains the core clock (HCLK), it can be used by the user application to setup the SysTick timer or configure other parameters\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SH "Function Documentation"
+.PP 
+.SS "void SystemCoreClockUpdate (void)"
+
+.PP
+Update SystemCoreClock variable according to Clock Register Values\&. The SystemCoreClock variable contains the core clock (HCLK), it can be used by the user application to setup the SysTick timer or configure other parameters\&. 
+.PP
+\fBNote\fP
+.RS 4
+Each time the core clock (HCLK) changes, this function must be called to update SystemCoreClock variable value\&. Otherwise, any configuration based on this variable will be incorrect\&.
+.PP
+- The system frequency computed by this function is not the real frequency in the chip\&. It is calculated based on the predefined constant and the selected clock source:
+.RE
+.PP
+.IP "\(bu" 2
+If SYSCLK source is MSI, SystemCoreClock will contain the \fBMSI_VALUE(*)\fP
+.IP "\(bu" 2
+If SYSCLK source is HSI, SystemCoreClock will contain the \fBHSI_VALUE(**)\fP
+.IP "\(bu" 2
+If SYSCLK source is HSE, SystemCoreClock will contain the \fBHSE_VALUE(***)\fP
+.IP "\(bu" 2
+If SYSCLK source is PLL, SystemCoreClock will contain the \fBHSE_VALUE(***)\fP or \fBHSI_VALUE(*)\fP or \fBMSI_VALUE(*)\fP multiplied/divided by the PLL factors\&.
+.PP
+.PP
+(*) MSI_VALUE is a constant defined in stm32l4xx_hal\&.h file (default value 4 MHz) but the real value may vary depending on the variations in voltage and temperature\&.
+.PP
+(**) HSI_VALUE is a constant defined in stm32l4xx_hal\&.h file (default value 16 MHz) but the real value may vary depending on the variations in voltage and temperature\&.
+.PP
+(***) HSE_VALUE is a constant defined in stm32l4xx_hal\&.h file (default value 8 MHz), user has to ensure that HSE_VALUE is same as the real frequency of the crystal used\&. Otherwise, this function may have wrong result\&.
+.PP
+.IP "\(bu" 2
+The result of this function could be not correct when using fractional value for HSE crystal\&.
+.PP
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB251\fP of file \fBsystem_stm32l4xx\&.c\fP\&.
+.PP
+.nf
+252 {
+253   uint32_t tmp, msirange, pllvco, pllsource, pllm, pllr;
+254 
+255   /* Get MSI Range frequency--------------------------------------------------*/
+256   if ((RCC->CR & RCC_CR_MSIRGSEL) == 0U)
+257   { /* MSISRANGE from RCC_CSR applies */
+258     msirange = (RCC->CSR & RCC_CSR_MSISRANGE) >> 8U;
+259   }
+260   else
+261   { /* MSIRANGE from RCC_CR applies */
+262     msirange = (RCC->CR & RCC_CR_MSIRANGE) >> 4U;
+263   }
+264   /*MSI frequency range in HZ*/
+265   msirange = MSIRangeTable[msirange];
+266 
+267   /* Get SYSCLK source -------------------------------------------------------*/
+268   switch (RCC->CFGR & RCC_CFGR_SWS)
+269   {
+270     case 0x00:  /* MSI used as system clock source */
+271       SystemCoreClock = msirange;
+272       break;
+273 
+274     case 0x04:  /* HSI used as system clock source */
+275       SystemCoreClock = HSI_VALUE;
+276       break;
+277 
+278     case 0x08:  /* HSE used as system clock source */
+279       SystemCoreClock = HSE_VALUE;
+280       break;
+281 
+282     case 0x0C:  /* PLL used as system clock  source */
+283       /* PLL_VCO = (HSE_VALUE or HSI_VALUE or MSI_VALUE/ PLLM) * PLLN
+284          SYSCLK = PLL_VCO / PLLR
+285          */
+286       pllsource = (RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC);
+287       pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> 4U) + 1U ;
+288 
+289       switch (pllsource)
+290       {
+291         case 0x02:  /* HSI used as PLL clock source */
+292           pllvco = (HSI_VALUE / pllm);
+293           break;
+294 
+295         case 0x03:  /* HSE used as PLL clock source */
+296           pllvco = (HSE_VALUE / pllm);
+297           break;
+298 
+299         default:    /* MSI used as PLL clock source */
+300           pllvco = (msirange / pllm);
+301           break;
+302       }
+303       pllvco = pllvco * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 8U);
+304       pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 25U) + 1U) * 2U;
+305       SystemCoreClock = pllvco/pllr;
+306       break;
+307 
+308     default:
+309       SystemCoreClock = msirange;
+310       break;
+311   }
+312   /* Compute HCLK clock frequency --------------------------------------------*/
+313   /* Get HCLK prescaler */
+314   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+315   /* HCLK clock frequency */
+316   SystemCoreClock >>= tmp;
+317 }
+.fi
+.SS "void SystemInit (void)"
+
+.PP
+Setup the microcontroller system\&. 
+.PP
+\fBReturn values\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB197\fP of file \fBsystem_stm32l4xx\&.c\fP\&.
+.PP
+.nf
+198 {
+199 #if defined(USER_VECT_TAB_ADDRESS)
+200   /* Configure the Vector Table location -------------------------------------*/
+201   SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET;
+202 #endif
+203 
+204   /* FPU settings ------------------------------------------------------------*/
+205 #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+206   SCB->CPACR |= ((3UL << 20U)|(3UL << 22U));  /* set CP10 and CP11 Full Access */
+207 #endif
+208 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

@@ -1,0 +1,81 @@
+\hypertarget{_test_8h}{}\doxysection{Core/\+Inc/\+Test.h File Reference}
+\label{_test_8h}\index{Core/Inc/Test.h@{Core/Inc/Test.h}}
+
+
+\+: Header for \mbox{\hyperlink{_test_8c}{Test.\+c}} file. This file contains the Test functions used in developing the project.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_test_8h_a615d58d6a23624b19abc863ce30f9cab}{Test\+\_\+\+Led}} (void)
+\item 
+void \mbox{\hyperlink{_test_8h_a62677bdd6f6d74d889a0fa118f269150}{Test\+\_\+program}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Header for \mbox{\hyperlink{_test_8c}{Test.\+c}} file. This file contains the Test functions used in developing the project. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2022 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition in file \mbox{\hyperlink{_test_8h_source}{Test.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_test_8h_a615d58d6a23624b19abc863ce30f9cab}\label{_test_8h_a615d58d6a23624b19abc863ce30f9cab}} 
+\index{Test.h@{Test.h}!Test\_Led@{Test\_Led}}
+\index{Test\_Led@{Test\_Led}!Test.h@{Test.h}}
+\doxysubsubsection{\texorpdfstring{Test\_Led()}{Test\_Led()}}
+{\footnotesize\ttfamily void Test\+\_\+\+Led (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_test_8c_source_l00018}{18}} of file \mbox{\hyperlink{_test_8c_source}{Test.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018                     \{}
+\DoxyCodeLine{00019     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <= 4; i++) \{}
+\DoxyCodeLine{00020         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'r'}, 100, 10);}
+\DoxyCodeLine{00021         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'y'}, 100, 10);}
+\DoxyCodeLine{00022         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'g'}, 100, 10);}
+\DoxyCodeLine{00023     \}}
+\DoxyCodeLine{00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 5; i <= 6; i++) \{}
+\DoxyCodeLine{00025         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'r'}, 100, 10);}
+\DoxyCodeLine{00026         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'g'}, 100, 10);}
+\DoxyCodeLine{00027         \mbox{\hyperlink{street_func_8h_a955203690ff554b9930aec9aa948be48}{Flash\_Led}}(i, \textcolor{charliteral}{'b'}, 100, 10);}
+\DoxyCodeLine{00028     \}}
+\DoxyCodeLine{00029     HAL\_Delay(1000);}
+\DoxyCodeLine{00030     \mbox{\hyperlink{street_func_8h_a7e926ab0bec29bda0539eaafca7ec93a}{Led\_Clear}}();}
+\DoxyCodeLine{00031 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_test_8h_a62677bdd6f6d74d889a0fa118f269150}\label{_test_8h_a62677bdd6f6d74d889a0fa118f269150}} 
+\index{Test.h@{Test.h}!Test\_program@{Test\_program}}
+\index{Test\_program@{Test\_program}!Test.h@{Test.h}}
+\doxysubsubsection{\texorpdfstring{Test\_program()}{Test\_program()}}
+{\footnotesize\ttfamily void Test\+\_\+program (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_test_8c_source_l00089}{89}} of file \mbox{\hyperlink{_test_8c_source}{Test.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089                         \{}
+\DoxyCodeLine{00090     \textcolor{comment}{//Test\_Led();}}
+\DoxyCodeLine{00091 }
+\DoxyCodeLine{00092     \textcolor{comment}{//Test\_Input();}}
+\DoxyCodeLine{00093     \textcolor{keywordflow}{while}(1)\{}
+\DoxyCodeLine{00094         \mbox{\hyperlink{_test_8c_a41f38dbb2821e9896be7d22928d8d851}{Test\_Switches}}();}
+\DoxyCodeLine{00095     \}}
+\DoxyCodeLine{00096 \}}
+
+\end{DoxyCode}

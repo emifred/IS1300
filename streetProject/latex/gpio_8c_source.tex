@@ -1,0 +1,99 @@
+\hypertarget{gpio_8c_source}{}\doxysection{gpio.\+c}
+\label{gpio_8c_source}\index{Core/Src/gpio.c@{Core/Src/gpio.c}}
+\mbox{\hyperlink{gpio_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00001}00001 \textcolor{comment}{/* USER CODE BEGIN Header */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00019}00019 \textcolor{comment}{/* USER CODE END Header */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00021}00021 \textcolor{comment}{/* Includes -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00022}00022 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00024}00024 \textcolor{comment}{/* USER CODE BEGIN 0 */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00026}00026 \textcolor{comment}{/* USER CODE END 0 */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00028}00028 \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00029}00029 \textcolor{comment}{/* Configure GPIO                                                             */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00030}00030 \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00031}00031 \textcolor{comment}{/* USER CODE BEGIN 1 */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00033}00033 \textcolor{comment}{/* USER CODE END 1 */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00042}\mbox{\hyperlink{gpio_8h_ac724e431d2af879252de35615be2bdea}{00042}} \textcolor{keywordtype}{void} \mbox{\hyperlink{gpio_8c_ac724e431d2af879252de35615be2bdea}{MX\_GPIO\_Init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00043}00043 \{}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00045}00045   GPIO\_InitTypeDef GPIO\_InitStruct = \{0\};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00047}00047   \textcolor{comment}{/* GPIO Ports Clock Enable */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00048}00048   \_\_HAL\_RCC\_GPIOH\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00049}00049   \_\_HAL\_RCC\_GPIOC\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00050}00050   \_\_HAL\_RCC\_GPIOB\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00051}00051   \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00053}00053   \textcolor{comment}{/*Configure GPIO pin Output Level */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00054}00054   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a09e274fac664cd8bebacd9fd709cbbe5}{STCP\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac8b65ea9a21eee29dd698458f0733df8}{STCP\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00056}00056   \textcolor{comment}{/*Configure GPIO pin Output Level */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00057}00057   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_aa9d3200741adf7c40d54cc3ac023c2d3}{Enable\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_a4c287bca8fad626e828ee127000a23a3}{Enable\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00059}00059   \textcolor{comment}{/*Configure GPIO pin Output Level */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00060}00060   HAL\_GPIO\_WritePin(\mbox{\hyperlink{main_8h_a1295dc826888461a14272b9b5b41a360}{Reset\_GPIO\_Port}}, \mbox{\hyperlink{main_8h_ac463ce2e029f6c2bfccbab172120cbe6}{Reset\_Pin}}, GPIO\_PIN\_RESET);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00062}00062   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00063}00063   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_a223d19c7838d497513962c08b979e003}{TL1\_Car\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00064}00064   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00065}00065   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00066}00066   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a5814ebcd4418dc815e17ddf0a5806f31}{TL1\_Car\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00068}00068   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00069}00069   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_ac8b65ea9a21eee29dd698458f0733df8}{STCP\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00070}00070   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00071}00071   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00072}00072   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00073}00073   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a09e274fac664cd8bebacd9fd709cbbe5}{STCP\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00075}00075   \textcolor{comment}{/*Configure GPIO pins : PBPin PBPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00076}00076   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_aa97c4a29e4c1aa98f3d0a55be0f58d9b}{TL2\_Car\_Pin}}|\mbox{\hyperlink{main_8h_a0c2da8d2b50ac9c1c4c44459e4edf7d7}{TL3\_Car\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00077}00077   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00078}00078   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00079}00079   HAL\_GPIO\_Init(GPIOB, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00081}00081   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00082}00082   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_a4c287bca8fad626e828ee127000a23a3}{Enable\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00083}00083   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00084}00084   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00085}00085   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00086}00086   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_aa9d3200741adf7c40d54cc3ac023c2d3}{Enable\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00088}00088   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00089}00089   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_ac463ce2e029f6c2bfccbab172120cbe6}{Reset\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00090}00090   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00091}00091   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00092}00092   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00093}00093   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a1295dc826888461a14272b9b5b41a360}{Reset\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00095}00095   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00096}00096   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_ad1e8729cd5e393ab6b45633d7b50c34f}{TL4\_Car\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00097}00097   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00098}00098   GPIO\_InitStruct.Pull = GPIO\_NOPULL;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00099}00099   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a8a01f2b541a1f9614fe6a586f8223c92}{TL4\_Car\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00101}00101   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00102}00102   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_afa116f01d095e7445dab67f9a0843240}{PL1\_Switch\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00103}00103   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00104}00104   GPIO\_InitStruct.Pull = GPIO\_PULLUP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00105}00105   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_af5c0f4dbc87a860c2fe911f625c37875}{PL1\_Switch\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00107}00107   \textcolor{comment}{/*Configure GPIO pin : PtPin */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00108}00108   GPIO\_InitStruct.Pin = \mbox{\hyperlink{main_8h_a962dd15883ef7bbb3378223d365c4219}{PL2\_Switch\_Pin}};}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00109}00109   GPIO\_InitStruct.Mode = GPIO\_MODE\_INPUT;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00110}00110   GPIO\_InitStruct.Pull = GPIO\_PULLUP;}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00111}00111   HAL\_GPIO\_Init(\mbox{\hyperlink{main_8h_a8a5edac5ed5b9a20270d4a080cf2f0bf}{PL2\_Switch\_GPIO\_Port}}, \&GPIO\_InitStruct);}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00113}00113 \}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00115}00115 \textcolor{comment}{/* USER CODE BEGIN 2 */}}
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{gpio_8c_source_l00117}00117 \textcolor{comment}{/* USER CODE END 2 */}}
+
+\end{DoxyCode}

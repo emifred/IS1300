@@ -1,0 +1,118 @@
+.TH "Core/Inc/gpio.h" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Inc/gpio.h \- This file contains all the function prototypes for the \fBgpio\&.c\fP file\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'main\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBMX_GPIO_Init\fP (void)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains all the function prototypes for the \fBgpio\&.c\fP file\&. 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBgpio\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void MX_GPIO_Init (void)"
+Configure pins as Analog Input Output EVENT_OUT EXTI 
+.PP
+Definition at line \fB42\fP of file \fBgpio\&.c\fP\&.
+.PP
+.nf
+43 {
+44 
+45   GPIO_InitTypeDef GPIO_InitStruct = {0};
+46 
+47   /* GPIO Ports Clock Enable */
+48   __HAL_RCC_GPIOH_CLK_ENABLE();
+49   __HAL_RCC_GPIOC_CLK_ENABLE();
+50   __HAL_RCC_GPIOB_CLK_ENABLE();
+51   __HAL_RCC_GPIOA_CLK_ENABLE();
+52 
+53   /*Configure GPIO pin Output Level */
+54   HAL_GPIO_WritePin(STCP_GPIO_Port, STCP_Pin, GPIO_PIN_RESET);
+55 
+56   /*Configure GPIO pin Output Level */
+57   HAL_GPIO_WritePin(Enable_GPIO_Port, Enable_Pin, GPIO_PIN_RESET);
+58 
+59   /*Configure GPIO pin Output Level */
+60   HAL_GPIO_WritePin(Reset_GPIO_Port, Reset_Pin, GPIO_PIN_RESET);
+61 
+62   /*Configure GPIO pin : PtPin */
+63   GPIO_InitStruct\&.Pin = TL1_Car_Pin;
+64   GPIO_InitStruct\&.Mode = GPIO_MODE_INPUT;
+65   GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+66   HAL_GPIO_Init(TL1_Car_GPIO_Port, &GPIO_InitStruct);
+67 
+68   /*Configure GPIO pin : PtPin */
+69   GPIO_InitStruct\&.Pin = STCP_Pin;
+70   GPIO_InitStruct\&.Mode = GPIO_MODE_OUTPUT_PP;
+71   GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+72   GPIO_InitStruct\&.Speed = GPIO_SPEED_FREQ_LOW;
+73   HAL_GPIO_Init(STCP_GPIO_Port, &GPIO_InitStruct);
+74 
+75   /*Configure GPIO pins : PBPin PBPin */
+76   GPIO_InitStruct\&.Pin = TL2_Car_Pin|TL3_Car_Pin;
+77   GPIO_InitStruct\&.Mode = GPIO_MODE_INPUT;
+78   GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+79   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+80 
+81   /*Configure GPIO pin : PtPin */
+82   GPIO_InitStruct\&.Pin = Enable_Pin;
+83   GPIO_InitStruct\&.Mode = GPIO_MODE_OUTPUT_PP;
+84   GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+85   GPIO_InitStruct\&.Speed = GPIO_SPEED_FREQ_LOW;
+86   HAL_GPIO_Init(Enable_GPIO_Port, &GPIO_InitStruct);
+87 
+88   /*Configure GPIO pin : PtPin */
+89   GPIO_InitStruct\&.Pin = Reset_Pin;
+90   GPIO_InitStruct\&.Mode = GPIO_MODE_OUTPUT_PP;
+91   GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+92   GPIO_InitStruct\&.Speed = GPIO_SPEED_FREQ_LOW;
+93   HAL_GPIO_Init(Reset_GPIO_Port, &GPIO_InitStruct);
+94 
+95   /*Configure GPIO pin : PtPin */
+96   GPIO_InitStruct\&.Pin = TL4_Car_Pin;
+97   GPIO_InitStruct\&.Mode = GPIO_MODE_INPUT;
+98   GPIO_InitStruct\&.Pull = GPIO_NOPULL;
+99   HAL_GPIO_Init(TL4_Car_GPIO_Port, &GPIO_InitStruct);
+100 
+101   /*Configure GPIO pin : PtPin */
+102   GPIO_InitStruct\&.Pin = PL1_Switch_Pin;
+103   GPIO_InitStruct\&.Mode = GPIO_MODE_INPUT;
+104   GPIO_InitStruct\&.Pull = GPIO_PULLUP;
+105   HAL_GPIO_Init(PL1_Switch_GPIO_Port, &GPIO_InitStruct);
+106 
+107   /*Configure GPIO pin : PtPin */
+108   GPIO_InitStruct\&.Pin = PL2_Switch_Pin;
+109   GPIO_InitStruct\&.Mode = GPIO_MODE_INPUT;
+110   GPIO_InitStruct\&.Pull = GPIO_PULLUP;
+111   HAL_GPIO_Init(PL2_Switch_GPIO_Port, &GPIO_InitStruct);
+112 
+113 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

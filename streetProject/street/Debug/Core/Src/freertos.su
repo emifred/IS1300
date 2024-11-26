@@ -1,0 +1,9 @@
+../Core/Src/freertos.c:140:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:204:6:StartDefaultTask	16	static
+../Core/Src/freertos.c:242:6:Button_Task1	16	static
+../Core/Src/freertos.c:267:6:Switches	16	static
+../Core/Src/freertos.c:304:6:timer	16	static
+../Core/Src/freertos.c:362:6:Button_Task2	16	static
+../Core/Src/freertos.c:387:6:Stall_Function	16	static
+../Core/Src/freertos.c:396:6:Button1_TimerHandler	8	static
+../Core/Src/freertos.c:416:6:Button2_TimerHandler	8	static

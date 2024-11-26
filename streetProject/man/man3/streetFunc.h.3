@@ -1,0 +1,504 @@
+.TH "Core/Inc/streetFunc.h" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Inc/streetFunc.h \- : Header for \fBstreetFunc\&.c\fP file\&. This file contains the functions used in the project  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <stdint\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBLed_Clear\fP (void)"
+.br
+.ti -1c
+.RI "void \fBBlue_Clear1\fP (void)"
+.br
+.RI "Function to clear all LEDS Led_Clear();\&. "
+.ti -1c
+.RI "void \fBBlue_Clear2\fP (void)"
+.br
+.RI "Function to clear the blue light on Crossing 1 Blue_Clear();\&. "
+.ti -1c
+.RI "void \fBLed_Toggle\fP (uint8_t n, char state)"
+.br
+.RI "Function to clear the blue light on Crossing 2 Blue_Clear();\&. "
+.ti -1c
+.RI "void \fBFlash_Led\fP (uint8_t n, char state, uint8_t delay, uint8_t times)"
+.br
+.RI "Function light up a specific colour of a specific traffic/crossing light Led_Toggle(n, 'state');\&. "
+.ti -1c
+.RI "void \fBStates\fP (uint8_t state)"
+.br
+.RI "Function to toogle on/off LED in a loop Flash_Led(n, 'state', delay, times);\&. "
+.ti -1c
+.RI "bool \fBCrossing_Button1\fP (void)"
+.br
+.RI "Function containing the different states of the crossing and the functions to show each of them\&. "
+.ti -1c
+.RI "bool \fBCrossing_Button2\fP (void)"
+.br
+.RI "Function for checking if button 1 has been pressed\&. "
+.ti -1c
+.RI "bool \fBCar_Horizontal\fP (void)"
+.br
+.RI "Function for checking if button 2 has been pressed\&. "
+.ti -1c
+.RI "bool \fBCar_Vertical\fP (void)"
+.br
+.RI "Function for checking if any cars are present on the horizontal road\&. "
+.ti -1c
+.RI "void \fBsendSPIdata\fP (uint8_t data[], uint8_t byteSize)"
+.br
+.RI "Function for checking if any cars are present on the vertical road\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+: Header for \fBstreetFunc\&.c\fP file\&. This file contains the functions used in the project 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBstreetFunc\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void Blue_Clear1 (void)"
+
+.PP
+Function to clear all LEDS Led_Clear();\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+32                       {
+33     led[0]&= ~(1 << 13);
+34     sendSPIdata(&led[0], 3);
+35     return;
+36 }
+.fi
+.SS "void Blue_Clear2 (void)"
+
+.PP
+Function to clear the blue light on Crossing 1 Blue_Clear();\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB37\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+37                       {
+38     led[0]&= ~(1 << 21);
+39     sendSPIdata(&led[0], 3);
+40     return;
+41 }
+.fi
+.SS "bool Car_Horizontal (void)"
+
+.PP
+Function for checking if button 2 has been pressed\&. void \fBCrossing_Button2()\fP; 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool, true if Button 2 has been pressed, otherwise false 
+.RE
+.PP
+
+.PP
+Definition at line \fB248\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+248                          {
+249     if ((HAL_GPIO_ReadPin(TL1_Car_GPIO_Port, TL1_Car_Pin)) == 0 || (HAL_GPIO_ReadPin(TL3_Car_GPIO_Port, TL3_Car_Pin)) == 0){
+250         return true;
+251     }
+252     else
+253         return false;
+254 }
+.fi
+.SS "bool Car_Vertical (void)"
+
+.PP
+Function for checking if any cars are present on the horizontal road\&. \fBCar_Horizontal(void)\fP; 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool, true if Car is present, otherwise false 
+.RE
+.PP
+
+.PP
+Definition at line \fB241\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+241                        {
+242     if ((HAL_GPIO_ReadPin(TL2_Car_GPIO_Port, TL2_Car_Pin)) == 0 || (HAL_GPIO_ReadPin(TL4_Car_GPIO_Port, TL4_Car_Pin)) == 0){
+243         return true;
+244     }
+245     else
+246         return false;
+247 }
+.fi
+.SS "bool Crossing_Button1 (void)"
+
+.PP
+Function containing the different states of the crossing and the functions to show each of them\&. void
+.PP
+state = 1: Vertical cars have green light
+.PP
+state = 2: Horizontal cars have green light
+.PP
+state = 3: Yellow lights are displayed States(state); 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIuint8_t\fP state: Choosing which state is active 
+.RE
+.PP
+
+.PP
+Definition at line \fB233\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+233                            {
+234     if ((HAL_GPIO_ReadPin(PL2_Switch_GPIO_Port, PL2_Switch_Pin)) == 0){
+235         return true;
+236     }
+237     else
+238         return false;
+239 }
+.fi
+.SS "bool Crossing_Button2 (void)"
+
+.PP
+Function for checking if button 1 has been pressed\&. void \fBCrossing_Button2()\fP; 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+bool, true if Button 1 has been pressed, otherwise false 
+.RE
+.PP
+
+.PP
+Definition at line \fB225\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+225                            {
+226     if ((HAL_GPIO_ReadPin(PL1_Switch_GPIO_Port, PL1_Switch_Pin)) == 0){
+227         return true;
+228     }
+229     else
+230         return false;
+231 }
+.fi
+.SS "void Flash_Led (uint8_t n, char state, uint8_t delay, uint8_t times)"
+
+.PP
+Function light up a specific colour of a specific traffic/crossing light Led_Toggle(n, 'state');\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fI1\fP uint8_t n : Which traffic light is to be toggled 
+.br
+\fI2\fP char state : Which colour is to be toggled 
+.RE
+.PP
+
+.PP
+Definition at line \fB163\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+163                                                                    {
+164     for(int i = 0; i <= times; i++){
+165         Led_Toggle(n, state);
+166         HAL_Delay(delay);
+167     }
+168     Led_Toggle(n, state);
+169     sendSPIdata(&led[0], 3);
+170 
+171 }
+.fi
+.SS "void Led_Clear (void)"
+
+.PP
+Definition at line \fB27\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+27                     {
+28     led[0] = 0x00000000;
+29     sendSPIdata(&led[0], 3);
+30 }
+.fi
+.SS "void Led_Toggle (uint8_t n, char state)"
+
+.PP
+Function to clear the blue light on Crossing 2 Blue_Clear();\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB43\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+43                                       {
+44 
+45     switch(n){
+46         case 3:
+47             switch(state){
+48             case 'g':
+49                 led[0]^= 1 << 2;
+50                 led[0]&= ~(1 << 1);
+51                 led[0]&= ~(1 << 0);
+52                 break;
+53             case 'y':
+54                 led[0]^= 1 << 1;
+55                 led[0]&= ~(1 << 2);
+56                 led[0]&= ~(1 << 0);
+57                 break;
+58             case 'r':
+59                 led[0]^= 1 << 0;
+60                 led[0]&= ~(1 << 2);
+61                 led[0]&= ~(1 << 1);
+62                 break;
+63             }
+64             break;
+65         case 4:
+66                 switch(state){
+67                 case 'g':
+68                     led[0]^= 1 << 5;
+69                     led[0]&= ~(1 << 4);
+70                     led[0]&= ~(1 << 3);
+71                     break;
+72                 case 'y':
+73                     led[0]^= 1 << 4;
+74                     led[0]&= ~(1 << 5);
+75                     led[0]&= ~(1 << 3);
+76                     break;
+77                 case 'r':
+78                     led[0]^= 1 << 3;
+79                     led[0]&= ~(1 << 5);
+80                     led[0]&= ~(1 << 4);
+81                     break;
+82                 }
+83         break;
+84         case 2:
+85             switch(state){
+86             case 'g':
+87                 led[0]^= 1 << 10;
+88                 led[0]&= ~(1 << 9);
+89                 led[0]&= ~(1 << 8);
+90                 break;
+91             case 'y':
+92                 led[0]^= 1 << 9;
+93                 led[0]&= ~(1 << 8);
+94                 led[0]&= ~(1 << 10);
+95                 break;
+96             case 'r':
+97                 led[0]^= 1 << 8;
+98                 led[0]&= ~(1 << 10);
+99                 led[0]&= ~(1 << 9);
+100                 break;
+101             }
+102         break;
+103         case 1:
+104             switch(state){
+105             case 'g':
+106                 led[0]^= 1 << 18;
+107                 led[0]&= ~(1 << 17);
+108                 led[0]&= ~(1 << 16);
+109                 break;
+110             case 'y':
+111                 led[0]^= 1 << 17;
+112                 led[0]&= ~(1 << 16);
+113                 led[0]&= ~(1 << 18);
+114                 break;
+115             case 'r':
+116                 led[0]^= 1 << 16;
+117                 led[0]&= ~(1 << 17);
+118                 led[0]&= ~(1 << 18);
+119                 break;
+120             }
+121         break;
+122         case 6:
+123             switch(state){
+124             case 'r':
+125                 led[0]^= 1 << 11;
+126                 led[0]&= ~(1 << 12);
+127                 break;
+128             case 'g':
+129                 led[0]^= 1 << 12;
+130                 led[0]&= ~(1 << 11);
+131                 break;
+132             case 'b':
+133                 led[0]^= 1 << 13;
+134             }
+135             break;
+136         case 5:
+137             switch(state){
+138             case 'r':
+139                 led[0]^= 1 << 19;
+140                 led[0]&= ~(1 << 20);
+141                 break;
+142             case 'g':
+143                 led[0]^= 1 << 20;
+144                 led[0]&= ~(1 << 19);
+145                 break;
+146             case 'b':
+147                 led[0]^= 1 << 21;
+148             }
+149         /*case 7:
+150             switch(state){
+151             case 'b':
+152                 led[0]^= 1 << 13;
+153                 led[0]^= 1 << 22;
+154                 break;
+155             }*/
+156             break;
+157     }
+158 
+159 
+160 
+161 }
+.fi
+.SS "void sendSPIdata (uint8_t data[], uint8_t byteSize)"
+
+.PP
+Function for checking if any cars are present on the vertical road\&. \fBCar_Vertical()\fP; 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvoid\fP 
+.RE
+.PP
+
+.PP
+Definition at line \fB256\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+256                                                   {
+257 
+258     HAL_SPI_Transmit(&hspi3, &data[0], byteSize, 100);
+259 
+260 
+261 
+262     HAL_GPIO_WritePin(STCP_GPIO_Port, STCP_Pin, GPIO_PIN_SET);
+263     HAL_GPIO_WritePin(STCP_GPIO_Port, STCP_Pin, GPIO_PIN_RESET);
+264 
+265 }
+.fi
+.SS "void States (uint8_t state)"
+
+.PP
+Function to toogle on/off LED in a loop Flash_Led(n, 'state', delay, times);\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fI1\fP uint8_t delay: Ms delay between blink 
+.br
+\fI2\fP uint8_t times: How many times LED should blink 
+.RE
+.PP
+
+.PP
+Definition at line \fB173\fP of file \fBstreetFunc\&.c\fP\&.
+.PP
+.nf
+173                           {
+174     switch(state){
+175     case 1:{
+176         //Bitshift the crossings first because the only have two states,
+177         //which makes them a bit hard to do with Led_Toggle in 3 states\&. Led_Toggle will send their values\&.
+178         led[0] |= 1 << 11;
+179         led[0]&= ~(1 << 12);
+180         led[0] |= 1 << 20;
+181         led[0]&= ~(1 << 19);
+182 
+183         Led_Toggle(1, 'r');
+184         Led_Toggle(2, 'g');
+185         Led_Toggle(3, 'r');
+186         Led_Toggle(4, 'g');
+187 
+188 
+189         sendSPIdata(&led[0], 3);
+190     break;
+191     }
+192     case 2:{
+193         led[0] |= 1 << 19;
+194         led[0]&= ~(1 << 20);
+195         led[0] |= 1 << 12;
+196         led[0]&= ~(1 << 11);
+197 
+198         Led_Toggle(1, 'g');
+199         Led_Toggle(2, 'r');
+200         Led_Toggle(3, 'g');
+201         Led_Toggle(4, 'r');
+202         sendSPIdata(&led[0], 3);
+203 
+204 
+205         break;
+206     }
+207     case 3:{
+208         led[0] |= 1 << 19;
+209         led[0]&= ~(1 << 20);
+210         led[0] |= 1 << 11;
+211         led[0]&= ~(1 << 12);
+212 
+213         Led_Toggle(1, 'y');
+214         Led_Toggle(2, 'y');
+215         Led_Toggle(3, 'y');
+216         Led_Toggle(4, 'y');
+217         sendSPIdata(&led[0], 3);
+218 
+219         break;
+220     }
+221     }
+222 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.

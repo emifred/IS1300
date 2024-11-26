@@ -1,0 +1,76 @@
+.TH "Core/Inc/Test.h" 3 "Thu Dec 15 2022" "street" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Core/Inc/Test.h \- : Header for \fBTest\&.c\fP file\&. This file contains the Test functions used in developing the project\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBTest_Led\fP (void)"
+.br
+.ti -1c
+.RI "void \fBTest_program\fP (void)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+: Header for \fBTest\&.c\fP file\&. This file contains the Test functions used in developing the project\&. 
+
+
+.PP
+\fBAttention\fP
+.RS 4
+
+.RE
+.PP
+Copyright (c) 2022 STMicroelectronics\&. All rights reserved\&.
+.PP
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component\&. If no LICENSE file comes with this software, it is provided AS-IS\&. 
+.PP
+Definition in file \fBTest\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void Test_Led (void)"
+
+.PP
+Definition at line \fB18\fP of file \fBTest\&.c\fP\&.
+.PP
+.nf
+18                     {
+19     for (int i = 0; i <= 4; i++) {
+20         Flash_Led(i, 'r', 100, 10);
+21         Flash_Led(i, 'y', 100, 10);
+22         Flash_Led(i, 'g', 100, 10);
+23     }
+24     for (int i = 5; i <= 6; i++) {
+25         Flash_Led(i, 'r', 100, 10);
+26         Flash_Led(i, 'g', 100, 10);
+27         Flash_Led(i, 'b', 100, 10);
+28     }
+29     HAL_Delay(1000);
+30     Led_Clear();
+31 }
+.fi
+.SS "void Test_program (void)"
+
+.PP
+Definition at line \fB89\fP of file \fBTest\&.c\fP\&.
+.PP
+.nf
+89                         {
+90     //Test_Led();
+91 
+92     //Test_Input();
+93     while(1){
+94         Test_Switches();
+95     }
+96 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for street from the source code\&.
